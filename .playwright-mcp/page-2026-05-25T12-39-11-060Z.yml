@@ -1,0 +1,751 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e4]:
+        - link "Ekkasit SRG" [ref=e5] [cursor=pointer]:
+          - /url: "#top"
+          - img [ref=e7]
+          - generic [ref=e9]: Ekkasit SRG
+        - generic [ref=e10]:
+          - button "Toggle language" [ref=e11]:
+            - generic [ref=e13]: EN
+            - generic [ref=e14]: EN / TH
+          - button "Switch to Light theme" [ref=e15]:
+            - img [ref=e18]
+            - generic [ref=e20]: Dark
+      - navigation "Page sections" [ref=e21]:
+        - list [ref=e23]:
+          - listitem [ref=e24]:
+            - button "Go to Hero" [ref=e25] [cursor=pointer]:
+              - generic:
+                - generic: "01"
+                - generic: Hero
+          - listitem [ref=e29]:
+            - button "Go to Paper Trade" [ref=e30] [cursor=pointer]:
+              - generic:
+                - generic: "02"
+                - generic: Paper Trade
+          - listitem [ref=e34]:
+            - button "Go to Hermes AI" [ref=e35] [cursor=pointer]:
+              - generic:
+                - generic: "03"
+                - generic: Hermes AI
+          - listitem [ref=e39]:
+            - button "Go to td-bot" [ref=e40] [cursor=pointer]:
+              - generic:
+                - generic: "04"
+                - generic: td-bot
+          - listitem [ref=e44]:
+            - button "Go to Experience" [ref=e45] [cursor=pointer]:
+              - generic:
+                - generic: "05"
+                - generic: Experience
+          - listitem [ref=e49]:
+            - button "Go to Stack" [ref=e50] [cursor=pointer]:
+              - generic:
+                - generic: "06"
+                - generic: Stack
+          - listitem [ref=e54]:
+            - button "Go to Contact" [ref=e55] [cursor=pointer]:
+              - generic:
+                - generic: "07"
+                - generic: Contact
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: Fullstack Developer / Trading Systems
+            - heading "Ekkasit Songrungruang" [level=1] [ref=e64]
+            - paragraph [ref=e65]: Chiang Mai and Bangkok based fullstack developer with almost 7 years of experience building web apps, crypto trading interfaces, backend APIs, and AI-assisted development workflows.
+            - generic [ref=e66]:
+              - link "View Paper Trade" [ref=e67] [cursor=pointer]:
+                - /url: "#paper-trade"
+                - text: View Paper Trade
+                - img [ref=e68]
+              - link "GitHub" [ref=e71] [cursor=pointer]:
+                - /url: https://github.com/Benz-srg/
+                - img [ref=e72]
+                - text: GitHub
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - generic [ref=e79]: Paper Trade Engine
+              - generic [ref=e80]: Online
+            - generic [ref=e82]:
+              - generic [ref=e83]:
+                - paragraph [ref=e84]: Experience
+                - paragraph [ref=e85]: Almost 7 years
+              - generic [ref=e86]:
+                - paragraph [ref=e87]: Focus
+                - paragraph [ref=e88]: Crypto systems
+              - generic [ref=e89]:
+                - paragraph [ref=e90]: Current stack
+                - paragraph [ref=e91]: Next.js / Binance
+              - generic [ref=e92]:
+                - paragraph [ref=e93]: Location
+                - paragraph [ref=e94]: Chiang Mai + Bangkok
+        - generic [ref=e109]:
+          - paragraph [ref=e110]: Skill Split
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e115]:
+                - generic [ref=e116]: 60%
+                - generic [ref=e117]: /
+                - generic [ref=e118]: 40%
+              - generic [ref=e119]:
+                - generic [ref=e120]:
+                  - generic [ref=e122]: Frontend
+                  - strong [ref=e123]: 60%
+                - generic [ref=e124]:
+                  - generic [ref=e126]: Backend
+                  - strong [ref=e127]: 40%
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - generic [ref=e130]: "7"
+                  - generic [ref=e131]: yrs exp
+                - generic [ref=e132]:
+                  - generic [ref=e133]: 50+
+                  - generic [ref=e134]: projects
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - generic [ref=e138]:
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: Frontend
+                    - strong [ref=e141]: 60%
+                  - generic [ref=e143]:
+                    - generic [ref=e144]: Next.js
+                    - generic [ref=e145]: React
+                    - generic [ref=e146]: TypeScript
+                    - generic [ref=e147]: Tailwind
+                - generic [ref=e148]:
+                  - generic [ref=e149]:
+                    - generic [ref=e150]: Backend
+                    - strong [ref=e151]: 40%
+                  - generic [ref=e153]:
+                    - generic [ref=e154]: Node.js
+                    - generic [ref=e155]: PostgreSQL
+                    - generic [ref=e156]: Supabase
+                    - generic [ref=e157]: Python
+              - generic [ref=e158]:
+                - paragraph [ref=e159]: Vibe Coding
+                - generic [ref=e160]:
+                  - generic [ref=e161]: Primary
+                  - generic [ref=e162]:
+                    - generic [ref=e163]: Claude Code CLI
+                    - generic [ref=e164]: Codex
+                - generic [ref=e165]:
+                  - generic [ref=e166]: Also used
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: Antigravity
+                    - generic [ref=e169]: Gemini CLI
+      - generic [ref=e170]:
+        - generic [ref=e171]:
+          - generic [ref=e172]:
+            - paragraph [ref=e173]:
+              - img [ref=e174]
+              - text: Featured Project
+            - 'heading "Paper Trade: AI-assisted BTC trading lab" [level=2] [ref=e176]'
+          - link "Live reference" [ref=e177] [cursor=pointer]:
+            - /url: https://frontend-sigma-murex-aakt3b4x1w.vercel.app/
+            - text: Live reference
+            - img [ref=e178]
+        - generic [ref=e181]:
+          - article [ref=e182]:
+            - generic [ref=e183]:
+              - img [ref=e185]
+              - generic [ref=e189]: Orders + Graph + Backtesting
+            - heading "Trading Web Application" [level=3] [ref=e190]
+            - paragraph [ref=e191]: A command-center UI for reviewing paper orders, plotting entries and exits on graphs, and checking strategy performance through backtesting views.
+          - article [ref=e192]:
+            - generic [ref=e193]:
+              - img [ref=e195]
+              - generic [ref=e198]: OpenClaw + MiniMax 2.5
+            - heading "Telegram AI Agent" [level=3] [ref=e199]
+            - paragraph [ref=e200]: An OpenClaw agent powered by MiniMax 2.5 sends daily BTC/USDT research, reads indicator context, chooses the strongest setup for the moment, and creates backtests for the plan.
+          - article [ref=e201]:
+            - generic [ref=e202]:
+              - img [ref=e204]
+              - generic [ref=e209]: CRUD + Supabase + Binance WS
+            - heading "Backend API" [level=3] [ref=e210]
+            - paragraph [ref=e211]: A backend API for trade data, research records, and market streams, connected to Supabase storage and Binance WebSocket price feeds.
+        - generic [ref=e212]:
+          - generic [ref=e214]:
+            - paragraph [ref=e215]:
+              - img [ref=e216]
+              - text: Trading Dashboard
+            - heading "Nexus AI web app for live BTC/USDT paper trading." [level=3] [ref=e220]
+          - generic [ref=e221]:
+            - tablist [ref=e222]:
+              - tab "Stats" [selected] [ref=e223]
+              - tab "Orders" [ref=e224]
+              - tab "Backtest" [ref=e225]
+            - generic [ref=e226]:
+              - generic:
+                - generic: Live product capture
+                - generic: Stats
+              - img "Nexus AI BTC/USDT paper trade stats screen showing realized P&L, win rate, equity curve, and trade history" [ref=e227]
+              - generic [ref=e228]:
+                - generic [ref=e229]:
+                  - paragraph [ref=e230]: Performance stats
+                  - generic [ref=e231]: Realized P&L, win rate, closed trades, open positions, equity curve, and trade history for BTC/USDT paper trading.
+                - button "Watch Paper Trade demo" [ref=e232]:
+                  - img [ref=e234]
+                  - text: Watch Paper Trade demo
+        - generic [ref=e236]:
+          - generic [ref=e237]:
+            - paragraph [ref=e242]: btc/usdt-research.agent
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - generic [ref=e245]: Session
+                - strong [ref=e246]: Evening 17:00 ICT
+              - generic [ref=e247]:
+                - generic [ref=e248]: Price
+                - strong [ref=e249]: 79,611.73 USDT
+              - generic [ref=e250]:
+                - generic [ref=e251]: MA5 / MA20
+                - strong [ref=e252]: 74,860.99 / 75,466.03
+              - generic [ref=e253]:
+                - generic [ref=e254]: Momentum
+                - strong [ref=e255]: +6.7171%
+              - generic [ref=e256]:
+                - generic [ref=e257]: Trend
+                - strong [ref=e258]: Bearish
+              - generic [ref=e259]:
+                - generic [ref=e260]: Portfolio
+                - strong [ref=e261]: 7 paper orders tracked
+          - generic [ref=e262]:
+            - paragraph [ref=e263]:
+              - img [ref=e264]
+              - text: Telegram Research Output
+            - heading "Daily BTC/USDT signal report generated for real trading review." [level=3] [ref=e267]
+            - paragraph [ref=e268]: "This output shows the agent packaging Binance market data into a readable Telegram brief: session timing, current price, moving averages, momentum, trend, RSI, MACD, Bollinger Bands, and paper portfolio order performance."
+            - generic [ref=e269]:
+              - generic [ref=e270]:
+                - paragraph [ref=e271]: Runtime
+                - paragraph [ref=e272]: OpenClaw
+              - generic [ref=e273]:
+                - paragraph [ref=e274]: LLM
+                - paragraph [ref=e275]: MiniMax 2.5
+              - generic [ref=e276]:
+                - paragraph [ref=e277]: Market
+                - paragraph [ref=e278]: BTC/USDT via Binance
+              - generic [ref=e279]:
+                - paragraph [ref=e280]: Delivery
+                - paragraph [ref=e281]: Telegram bot
+      - generic [ref=e282]:
+        - generic [ref=e283]:
+          - paragraph [ref=e284]:
+            - img [ref=e285]
+            - text: System Flow
+          - heading "Built like a quant research pipeline." [level=2] [ref=e289]
+          - paragraph [ref=e290]: The project connects market streams, stored trade data, strategy research, and AI-generated planning into one feedback loop.
+        - generic [ref=e291]:
+          - generic [ref=e292]:
+            - generic [ref=e293]: "01"
+            - paragraph [ref=e294]: Next.js trading dashboard
+            - img [ref=e295]
+          - generic [ref=e300]:
+            - generic [ref=e301]: "02"
+            - paragraph [ref=e302]: Backend API layer
+            - img [ref=e303]
+          - generic [ref=e308]:
+            - generic [ref=e309]: "03"
+            - paragraph [ref=e310]: Supabase data store
+            - img [ref=e311]
+          - generic [ref=e316]:
+            - generic [ref=e317]: "04"
+            - paragraph [ref=e318]: Binance WebSocket feed
+            - img [ref=e319]
+          - generic [ref=e324]:
+            - generic [ref=e325]: "05"
+            - paragraph [ref=e326]: OpenClaw MiniMax 2.5 Telegram agent
+            - img [ref=e327]
+      - generic [ref=e332]:
+        - generic [ref=e333]:
+          - generic [ref=e334]:
+            - paragraph [ref=e335]:
+              - img [ref=e336]
+              - text: Featured Project
+            - heading "Hermes AI — Telegram-native project manager" [level=2] [ref=e339]
+          - generic [ref=e340]:
+            - img [ref=e342]
+            - text: Runs on Local
+        - generic [ref=e344]:
+          - article [ref=e345]:
+            - generic [ref=e346]:
+              - img [ref=e348]
+              - generic [ref=e360]: Telegram · Hermes Bot
+            - heading "AI Brainstorm Interface" [level=3] [ref=e361]
+            - paragraph [ref=e362]: Hermes listens in Telegram, clarifies intent, brainstorms scope, and confirms Definition of Done before any ticket is created.
+          - article [ref=e363]:
+            - generic [ref=e364]:
+              - img [ref=e366]
+              - generic [ref=e369]: TDD · DoD · Unit Tests
+            - heading "Paperclip AI Integration" [level=3] [ref=e370]
+            - paragraph [ref=e371]: Once scope is confirmed, Hermes creates a structured ticket in Paperclip AI with DoD checklist and unit test requirements for TDD workflow.
+          - article [ref=e372]:
+            - generic [ref=e373]:
+              - img [ref=e375]
+              - generic [ref=e382]: Reports Channel · Telegram
+            - heading "QA → Report Pipeline" [level=3] [ref=e383]
+            - paragraph [ref=e384]: Paperclip AI distributes work within the org. After completion, QA rechecks and Hermes posts the result to the Reports thread in Telegram.
+        - generic [ref=e385]:
+          - generic [ref=e386]:
+            - generic [ref=e387]:
+              - generic [ref=e388]: You
+              - paragraph [ref=e389]: Message Hermes in Telegram
+            - img [ref=e390]
+          - generic [ref=e392]:
+            - generic [ref=e393]:
+              - generic [ref=e394]: Hermes AI
+              - paragraph [ref=e395]: Brainstorm + clarify scope
+            - img [ref=e396]
+          - generic [ref=e398]:
+            - generic [ref=e399]:
+              - generic [ref=e400]: Paperclip AI
+              - paragraph [ref=e401]: Create ticket — DoD + unit tests (TDD)
+            - img [ref=e402]
+          - generic [ref=e404]:
+            - generic [ref=e405]:
+              - generic [ref=e406]: Org
+              - paragraph [ref=e407]: Distribute and execute tasks
+            - img [ref=e408]
+          - generic [ref=e410]:
+            - generic [ref=e411]:
+              - generic [ref=e412]: QA
+              - paragraph [ref=e413]: Recheck + verify DoD
+            - img [ref=e414]
+          - generic [ref=e417]:
+            - generic [ref=e418]: Reports
+            - paragraph [ref=e419]: Post result to Telegram thread
+        - generic [ref=e420]:
+          - generic [ref=e421]:
+            - paragraph [ref=e422]:
+              - img [ref=e423]
+              - text: Live Telegram Channels
+            - heading "Hermes AI in action — Tickets, Projects, and Reports." [level=3] [ref=e426]
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - button "Tickets" [ref=e429]
+              - button "Projects" [ref=e430]
+              - button "Reports" [ref=e431]
+            - generic [ref=e432]:
+              - generic:
+                - generic: Hermes TES · Telegram
+                - generic: Benz & Hermes TES
+              - img "Hermes AI clarifies scope, defines DoD, then creates the ticket in Paperclip AI." [ref=e433]
+              - generic [ref=e435]:
+                - paragraph [ref=e436]: Tickets
+                - generic [ref=e437]: Hermes AI clarifies scope, defines DoD, then creates the ticket in Paperclip AI.
+      - generic [ref=e438]:
+        - generic [ref=e439]:
+          - generic [ref=e440]:
+            - paragraph [ref=e441]:
+              - img [ref=e442]
+              - text: td-bot Workflows
+            - heading "Scheduled learning, reporting, and paper-order automation." [level=2] [ref=e445]
+            - paragraph [ref=e446]: Three cron workflows run daily — learning market patterns, generating scalp orders, and sending Telegram reports.
+          - generic [ref=e447]:
+            - img [ref=e449]
+            - text: AWS Lightsail
+        - generic [ref=e452]:
+          - generic [ref=e453]:
+            - paragraph [ref=e454]:
+              - img [ref=e455]
+              - text: Bot Commands
+            - generic [ref=e457]:
+              - generic [ref=e458]:
+                - code [ref=e459]: summary
+                - generic [ref=e460]: →
+                - generic [ref=e461]: Portfolio + orders + P&L
+              - generic [ref=e462]:
+                - code [ref=e463]: analyze
+                - generic [ref=e464]: →
+                - generic [ref=e465]: Market analysis + signals
+              - generic [ref=e466]:
+                - code [ref=e467]: create orders
+                - generic [ref=e468]: →
+                - generic [ref=e469]: Create new planned orders
+              - generic [ref=e470]:
+                - code [ref=e471]: close orders
+                - generic [ref=e472]: →
+                - generic [ref=e473]: Close open positions
+              - generic [ref=e474]:
+                - code [ref=e475]: cancel orders
+                - generic [ref=e476]: →
+                - generic [ref=e477]: Cancel pending orders
+              - generic [ref=e478]:
+                - code [ref=e479]: status
+                - generic [ref=e480]: →
+                - generic [ref=e481]: View all pending orders
+              - generic [ref=e482]:
+                - code [ref=e483]: backtest
+                - generic [ref=e484]: →
+                - generic [ref=e485]: Test indicator strategy
+              - generic [ref=e486]:
+                - code [ref=e487]: research
+                - generic [ref=e488]: →
+                - generic [ref=e489]: News + sentiment analysis
+          - generic [ref=e492]:
+            - paragraph [ref=e493]:
+              - img [ref=e494]
+              - text: Example Interactions
+            - generic [ref=e502]:
+              - generic [ref=e503]:
+                - generic [ref=e505]: "\"summarize portfolio\""
+                - generic [ref=e507]: → Fetch portfolio + orders + P&L from Supabase
+              - generic [ref=e508]:
+                - generic [ref=e510]: "\"analyze market\""
+                - generic [ref=e512]: → Fetch BTC price + F&G + signals + indicators
+              - generic [ref=e513]:
+                - generic [ref=e515]: "\"create 10 orders\""
+                - generic [ref=e517]: → Create 10 orders at different levels
+              - generic [ref=e518]:
+                - generic [ref=e520]: "\"close all orders\""
+                - generic [ref=e522]: → Close all positions + cancel all pending
+              - generic [ref=e523]:
+                - generic [ref=e525]: "\"backtest STO\""
+                - generic [ref=e527]: → Create backfill script + measure Win Rate
+              - generic [ref=e528]:
+                - generic [ref=e530]: "\"research\""
+                - generic [ref=e532]: → Analyze news + indicators + recommend
+        - generic [ref=e533]:
+          - generic [ref=e534]:
+            - generic [ref=e535]:
+              - img [ref=e537]
+              - generic [ref=e539]:
+                - paragraph [ref=e540]: 01:00 UTC
+                - paragraph [ref=e541]: daily_scalp_orders
+            - img [ref=e544]
+            - generic [ref=e546]:
+              - paragraph [ref=e547]: Scalp Orders
+              - list [ref=e548]:
+                - listitem [ref=e549]:
+                  - generic [ref=e550]: "01"
+                  - generic [ref=e551]: Fetch BTC price + RSI
+                - listitem [ref=e552]:
+                  - generic [ref=e553]: "02"
+                  - generic [ref=e554]: RSI < 35 → BUY at support
+                - listitem [ref=e555]:
+                  - generic [ref=e556]: "03"
+                  - generic [ref=e557]: RSI > 65 → SELL at resistance
+                - listitem [ref=e558]:
+                  - generic [ref=e559]: "04"
+                  - generic [ref=e560]: Otherwise → BUY + SELL
+            - img [ref=e563]
+            - generic [ref=e565]:
+              - img [ref=e566]
+              - generic [ref=e570]: Supabase DB
+          - generic [ref=e571]:
+            - generic [ref=e572]:
+              - img [ref=e574]
+              - generic [ref=e577]:
+                - paragraph [ref=e578]: 02:00 / 10:00 UTC
+                - paragraph [ref=e579]: btc_usdt_supabase_report
+            - img [ref=e582]
+            - generic [ref=e584]:
+              - paragraph [ref=e585]: Morning / Evening Report
+              - list [ref=e586]:
+                - listitem [ref=e587]:
+                  - generic [ref=e588]: "01"
+                  - generic [ref=e589]: Fetch BTC price + Fear & Greed
+                - listitem [ref=e590]:
+                  - generic [ref=e591]: "02"
+                  - generic [ref=e592]: Calculate session stats
+                - listitem [ref=e593]:
+                  - generic [ref=e594]: "03"
+                  - generic [ref=e595]: Send formatted report
+            - img [ref=e598]
+            - generic [ref=e600]:
+              - img [ref=e601]
+              - generic [ref=e604]: Telegram
+          - generic [ref=e605]:
+            - generic [ref=e606]:
+              - img [ref=e608]
+              - generic [ref=e611]:
+                - paragraph [ref=e612]: 08:00 / 16:00 / 00:00 UTC
+                - paragraph [ref=e613]: daily_learning
+            - img [ref=e616]
+            - generic [ref=e618]:
+              - paragraph [ref=e619]: Daily Learning (×3/day)
+              - list [ref=e620]:
+                - listitem [ref=e621]:
+                  - generic [ref=e622]: "01"
+                  - generic [ref=e623]: F&G + CryptoPanic → sentiment
+                - listitem [ref=e624]:
+                  - generic [ref=e625]: "02"
+                  - generic [ref=e626]: Evaluate yesterday's predictions
+                - listitem [ref=e627]:
+                  - generic [ref=e628]: "03"
+                  - generic [ref=e629]: Generate MA / RSI / MACD signals
+                - listitem [ref=e630]:
+                  - generic [ref=e631]: "04"
+                  - generic [ref=e632]: Update model beliefs + accuracy
+                - listitem [ref=e633]:
+                  - generic [ref=e634]: "05"
+                  - generic [ref=e635]: Send Telegram market report
+                - listitem [ref=e636]:
+                  - generic [ref=e637]: "06"
+                  - generic [ref=e638]: Analyze trades + adjust orders
+            - img [ref=e641]
+            - generic [ref=e643]:
+              - img [ref=e644]
+              - generic [ref=e648]: Supabase + Telegram
+        - generic [ref=e649]:
+          - generic [ref=e650]:
+            - paragraph [ref=e651]:
+              - img [ref=e652]
+              - text: Agents (Coming Soon)
+            - generic [ref=e656]:
+              - generic [ref=e657]: Market Watcher
+              - generic [ref=e658]: Monitor price 24/7, alert when price hits target
+            - generic [ref=e659]:
+              - generic [ref=e660]: Research Agent
+              - generic [ref=e661]: Analyze backtest results + find new params
+          - generic [ref=e662]:
+            - paragraph [ref=e663]:
+              - img [ref=e664]
+              - text: Memory System
+            - generic [ref=e668]: MEMORY.md — long-term context
+            - generic [ref=e670]: memory/YYYY-MM-DD.md — daily log
+            - generic [ref=e672]: Every decision is recorded
+          - generic [ref=e673]:
+            - paragraph [ref=e674]:
+              - img [ref=e675]
+              - text: MCP Tools
+            - generic [ref=e680]:
+              - code [ref=e681]: tradingview_indicators
+              - generic [ref=e682]: RSI, MACD, STO, BB, MA, EMA
+            - generic [ref=e683]:
+              - code [ref=e684]: obsidian
+              - generic [ref=e685]: Read/write notes in vault
+          - generic [ref=e686]:
+            - paragraph [ref=e687]:
+              - img [ref=e688]
+              - text: Plugins
+            - generic [ref=e690]:
+              - generic [ref=e691]:
+                - code [ref=e692]: td-tg-bot
+                - generic [ref=e693]: Fly.io
+              - generic [ref=e694]: Telegram bot API
+            - generic [ref=e695]:
+              - generic [ref=e696]:
+                - code [ref=e697]: obsidian_mcp_server
+                - generic [ref=e698]: port 8081
+              - generic [ref=e699]: Obsidian MCP server
+            - generic [ref=e700]:
+              - generic [ref=e701]:
+                - code [ref=e702]: supabase
+                - generic [ref=e703]: cloud
+              - generic [ref=e704]: Trade/order database
+        - generic [ref=e705]:
+          - paragraph [ref=e706]:
+            - img [ref=e707]
+            - text: Supabase Tables
+          - generic [ref=e711]:
+            - generic [ref=e712]:
+              - code [ref=e713]: paper_trades
+              - paragraph [ref=e714]: Executed trade history
+            - generic [ref=e715]:
+              - code [ref=e716]: planned_orders
+              - paragraph [ref=e717]: Orders waiting for execution
+            - generic [ref=e718]:
+              - code [ref=e719]: indicator_signals
+              - paragraph [ref=e720]: Daily predictive signals
+            - generic [ref=e721]:
+              - code [ref=e722]: indicator_performance
+              - paragraph [ref=e723]: Cumulative indicator accuracy
+            - generic [ref=e724]:
+              - code [ref=e725]: model_beliefs
+              - paragraph [ref=e726]: Model regime beliefs
+            - generic [ref=e727]:
+              - code [ref=e728]: news_sentiment
+              - paragraph [ref=e729]: News-derived sentiment
+      - generic [ref=e730]:
+        - generic [ref=e731]:
+          - paragraph [ref=e732]:
+            - img [ref=e733]
+            - text: Experience
+          - heading "Production web apps, trading tools, and AI-assisted workflow." [level=2] [ref=e745]
+        - generic [ref=e746]:
+          - article [ref=e747]:
+            - generic [ref=e748]:
+              - generic [ref=e749]:
+                - heading "Fullstack Developer" [level=3] [ref=e750]
+                - paragraph [ref=e751]: Yellow Capital Co.Ltd
+              - paragraph [ref=e752]: Apr 2025 - Present
+            - paragraph [ref=e753]: Build cryptocurrency trading workflows including P2P trading, custom spot trading views, order placement, and position management.
+            - generic [ref=e754]:
+              - generic "Next.js" [ref=e755]:
+                - img [ref=e756]
+                - generic [ref=e761]: Next.js
+              - generic "NestJS" [ref=e762]:
+                - img [ref=e763]
+                - generic [ref=e765]: NestJS
+              - generic "TypeScript" [ref=e766]:
+                - img [ref=e767]
+                - generic [ref=e770]: TypeScript
+              - generic "Binance" [ref=e771]:
+                - img [ref=e772]
+                - generic [ref=e775]: Binance
+          - article [ref=e776]:
+            - generic [ref=e777]:
+              - generic [ref=e778]:
+                - heading "Frontend Developer" [level=3] [ref=e779]
+                - paragraph [ref=e780]: Bitnance Co.Ltd
+              - paragraph [ref=e781]: Apr 2024 - Apr 2025
+            - paragraph [ref=e782]: Developed crypto trading interfaces with React hooks, cached market activity data, and supported order and position workflows.
+            - generic [ref=e783]:
+              - generic "Next.js" [ref=e784]:
+                - img [ref=e785]
+                - generic [ref=e790]: Next.js
+              - generic "React" [ref=e791]:
+                - img [ref=e792]
+                - generic [ref=e796]: React
+              - generic "TypeScript" [ref=e797]:
+                - img [ref=e798]
+                - generic [ref=e801]: TypeScript
+          - article [ref=e802]:
+            - generic [ref=e803]:
+              - generic [ref=e804]:
+                - heading "Fullstack Developer" [level=3] [ref=e805]
+                - paragraph [ref=e806]: ndoandco.co.,ltd
+              - paragraph [ref=e807]: Feb 2022 - Apr 2024
+            - paragraph [ref=e808]: Built e-commerce CMS interfaces, backend APIs, Nuxt.js applications, and integration services across team Git workflows.
+            - generic [ref=e809]:
+              - generic "Next.js" [ref=e810]:
+                - img [ref=e811]
+                - generic [ref=e816]: Next.js
+              - generic "Nuxt" [ref=e817]:
+                - img [ref=e818]
+                - generic [ref=e820]: Nuxt
+              - generic "NestJS" [ref=e821]:
+                - img [ref=e822]
+                - generic [ref=e824]: NestJS
+              - generic "TypeScript" [ref=e825]:
+                - img [ref=e826]
+                - generic [ref=e829]: TypeScript
+          - article [ref=e830]:
+            - generic [ref=e831]:
+              - generic [ref=e832]:
+                - heading "Fullstack Developer" [level=3] [ref=e833]
+                - paragraph [ref=e834]: It a Lot
+              - paragraph [ref=e835]: 2022 - 2024
+            - paragraph [ref=e836]: Built a crypto trading bot system with automated trading via Binance and Bitkub, P2P order management, indicator-based entry logic, and portfolio rebalancing workflows.
+            - generic [ref=e837]:
+              - generic "Next.js" [ref=e838]:
+                - img [ref=e839]
+                - generic [ref=e844]: Next.js
+              - generic "TypeScript" [ref=e845]:
+                - img [ref=e846]
+                - generic [ref=e849]: TypeScript
+              - generic "Binance" [ref=e850]:
+                - img [ref=e851]
+                - generic [ref=e854]: Binance
+              - generic "Bitcoin" [ref=e855]:
+                - img [ref=e856]
+                - generic [ref=e865]: Bitcoin
+          - article [ref=e866]:
+            - generic [ref=e867]:
+              - generic [ref=e868]:
+                - heading "Backend / Fullstack / Frontend Developer" [level=3] [ref=e869]
+                - paragraph [ref=e870]: Harrots, Tectony, Fillgoods
+              - paragraph [ref=e871]: 2019 - 2022
+            - paragraph [ref=e872]: Delivered internal systems, Next.js and Vue apps, LIFF integrations, AWS deployments, WordPress content, SEO, and SSL operations.
+            - generic [ref=e873]:
+              - generic "Next.js" [ref=e874]:
+                - img [ref=e875]
+                - generic [ref=e880]: Next.js
+              - generic "Vue" [ref=e881]:
+                - img [ref=e882]
+                - generic [ref=e886]: Vue
+              - generic "Nuxt" [ref=e887]:
+                - img [ref=e888]
+                - generic [ref=e890]: Nuxt
+      - generic [ref=e891]:
+        - generic [ref=e892]:
+          - img [ref=e893]
+          - text: Stack Signals
+        - generic [ref=e896]:
+          - generic [ref=e897]:
+            - img [ref=e898]
+            - generic [ref=e902]: React
+          - generic [ref=e903]:
+            - img [ref=e904]
+            - generic [ref=e909]: Next.js
+          - generic [ref=e910]:
+            - img [ref=e911]
+            - generic [ref=e914]: TypeScript
+          - generic [ref=e915]:
+            - img [ref=e916]
+            - generic [ref=e919]: JavaScript
+          - generic [ref=e920]:
+            - img [ref=e921]
+            - generic [ref=e925]: Vue
+          - generic [ref=e926]:
+            - img [ref=e927]
+            - generic [ref=e929]: Nuxt
+          - generic [ref=e930]:
+            - img [ref=e931]
+            - generic [ref=e933]: Nest.js
+          - generic [ref=e934]:
+            - img [ref=e935]
+            - generic [ref=e939]: Supabase
+          - generic [ref=e940]:
+            - img [ref=e941]
+            - generic [ref=e952]: PostgreSQL
+          - generic [ref=e953]:
+            - img [ref=e954]
+            - generic [ref=e956]: MongoDB
+          - generic [ref=e957]:
+            - img [ref=e958]
+            - generic [ref=e968]: Redis
+          - generic [ref=e969]:
+            - img [ref=e970]
+            - generic [ref=e973]: Binance
+          - generic [ref=e974]:
+            - img [ref=e975]
+            - generic [ref=e984]: Bitcoin
+          - generic [ref=e985]:
+            - img [ref=e986]
+            - generic [ref=e989]: Telegram
+          - generic [ref=e990]:
+            - img [ref=e991]
+            - generic [ref=e999]: OpenClaw
+          - generic [ref=e1000]:
+            - img [ref=e1001]
+            - generic [ref=e1013]: MiniMax 2.5
+          - generic [ref=e1014]:
+            - img [ref=e1015]
+            - generic [ref=e1017]: Claude
+          - generic [ref=e1018]:
+            - img [ref=e1019]
+            - generic [ref=e1035]: Gemini
+          - generic [ref=e1036]:
+            - img [ref=e1037]
+            - generic [ref=e1039]: GitHub
+          - generic [ref=e1040]:
+            - img [ref=e1041]
+            - generic [ref=e1043]: Vercel
+      - generic [ref=e1045]:
+        - generic [ref=e1046]:
+          - paragraph [ref=e1047]:
+            - img [ref=e1048]
+            - text: Contact
+          - heading "Open to fullstack, trading platform, and AI tooling work." [level=2] [ref=e1055]
+        - generic [ref=e1056]:
+          - link "Ekkasit.srg@gmail.com" [ref=e1057] [cursor=pointer]:
+            - /url: mailto:Ekkasit.srg@gmail.com
+            - img [ref=e1058]
+            - text: Ekkasit.srg@gmail.com
+          - link "061-4498826" [ref=e1061] [cursor=pointer]:
+            - /url: tel:+66614498826
+            - img [ref=e1062]
+            - text: 061-4498826
+          - link "github.com/Benz-srg" [ref=e1064] [cursor=pointer]:
+            - /url: https://github.com/Benz-srg/
+            - img [ref=e1065]
+            - text: github.com/Benz-srg
+          - generic [ref=e1069]:
+            - img [ref=e1070]
+            - text: Chiang Mai / Bangkok
+  - button "Open Next.js Dev Tools" [ref=e1078] [cursor=pointer]:
+    - img [ref=e1079]
