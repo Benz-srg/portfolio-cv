@@ -3006,6 +3006,38 @@ body {
     gap: 6px;
   }
 
+  /* ── Skill widget: full-width single-column on mobile ── */
+  .skill-widget-full > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+  }
+
+  .skill-pie-wrap {
+    align-items: center !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .skill-pie {
+    height: 140px !important;
+    width: 140px !important;
+  }
+
+  .skill-pie__legend {
+    flex-direction: row !important;
+    gap: 24px !important;
+    justify-content: center !important;
+  }
+
+  .skill-stats-row {
+    justify-content: center !important;
+  }
+
+  .skill-right-panel {
+    width: 100% !important;
+  }
+
   /* ── Mobile: convert horizontal reveals → vertical ── */
   .scroll-reveal-ready .reveal-left,
   .scroll-reveal-ready .reveal-right {
