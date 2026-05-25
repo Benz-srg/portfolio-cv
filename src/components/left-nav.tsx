@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/locale-context";
+import { Menu, X } from "lucide-react";
 
 const sectionIds = [
   { id: "top", abbr: "01", en: "Hero", th: "หน้าแรก" },
@@ -36,19 +37,16 @@ export function LeftNav() {
 
   const [active, setActive] = useState("top");
   const [mobileVisible, setMobileVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
-    // Run once immediately to set initial active state
     setActive(getActiveSection());
 
     const handleScroll = () => {
       const y = window.scrollY;
-
-      // Active section: find which section top is above the 35% viewport mark
       setActive(getActiveSection());
 
-      // Mobile bottom nav: show on scroll-down, hide on scroll-up
       const delta = y - lastScrollY.current;
       if (Math.abs(delta) > 6) {
         setMobileVisible(delta > 0);
@@ -61,9 +59,21 @@ export function LeftNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when dialog open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 120);
   };
+
+  const contactSection = sections.find((s) => s.id === "contact")!;
+  const activeSection = sections.find((s) => s.id === active);
 
   return (
     <>
@@ -97,28 +107,86 @@ export function LeftNav() {
         </ul>
       </nav>
 
-      {/* ── Mobile bottom nav ──────────────────── */}
-      <nav
-        className={mobileVisible ? "bottom-nav" : "bottom-nav bottom-nav--hidden"}
-        aria-label="Page sections"
+      {/* ── Mobile bottom bar ──────────────────── */}
+      <div
+        className={mobileVisible ? "bottom-bar" : "bottom-bar bottom-bar--hidden"}
+        role="navigation"
+        aria-label="Mobile navigation"
       >
-        {sections.map(({ id, label }) => (
-          <button
-            key={id}
-            type="button"
-            className={
-              active === id
-                ? "bottom-nav__item bottom-nav__item--active"
-                : "bottom-nav__item"
-            }
-            onClick={() => scrollTo(id)}
-            aria-label={`Go to ${label}`}
-          >
-            <span className="bottom-nav__dot" aria-hidden="true" />
-            <span className="bottom-nav__label">{label}</span>
-          </button>
-        ))}
-      </nav>
+        {/* Menu button — 70% */}
+        <button
+          type="button"
+          className="bottom-bar__menu"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
+        >
+          <Menu size={18} aria-hidden="true" />
+          <span className="bottom-bar__menu-label">
+            {activeSection?.label ?? "Menu"}
+          </span>
+          <span className="bottom-bar__active-dot" aria-hidden="true" />
+        </button>
+
+        {/* Contact shortcut — 30% */}
+        <button
+          type="button"
+          className="bottom-bar__contact"
+          onClick={() => scrollTo("contact")}
+          aria-label={`Go to ${contactSection.label}`}
+        >
+          {contactSection.label}
+        </button>
+      </div>
+
+      {/* ── Menu dialog ────────────────────────── */}
+      {menuOpen && (
+        <div className="nav-dialog" role="dialog" aria-modal="true" aria-label="Navigation menu">
+          {/* Backdrop */}
+          <div
+            className="nav-dialog__backdrop"
+            onClick={() => setMenuOpen(false)}
+          />
+
+          {/* Sheet */}
+          <div className="nav-dialog__sheet">
+            <div className="nav-dialog__header">
+              <span className="nav-dialog__title">
+                {locale === "en" ? "Navigation" : "เมนู"}
+              </span>
+              <button
+                type="button"
+                className="nav-dialog__close"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <ul className="nav-dialog__list">
+              {sections.map(({ id, label, abbr }) => (
+                <li key={id}>
+                  <button
+                    type="button"
+                    className={
+                      active === id
+                        ? "nav-dialog__item nav-dialog__item--active"
+                        : "nav-dialog__item"
+                    }
+                    onClick={() => scrollTo(id)}
+                  >
+                    <span className="nav-dialog__abbr">{abbr}</span>
+                    <span className="nav-dialog__label">{label}</span>
+                    {active === id && (
+                      <span className="nav-dialog__active-bar" aria-hidden="true" />
+                    )}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </>
   );
 }

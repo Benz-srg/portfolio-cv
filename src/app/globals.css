@@ -1166,16 +1166,17 @@ body {
 
 /* ── Bottom Nav (mobile) ─────────────────────────────── */
 
-.bottom-nav {
-  align-items: center;
-  backdrop-filter: blur(16px);
-  background: rgba(5, 7, 11, 0.88);
+/* ── Mobile bottom bar (Menu 70% + Contact 30%) ─────────── */
+.bottom-bar {
+  align-items: stretch;
+  backdrop-filter: blur(18px);
+  background: rgba(5, 7, 11, 0.9);
   border-top: 1px solid rgba(34, 211, 238, 0.14);
   bottom: 0;
   display: flex;
-  justify-content: space-around;
+  height: calc(52px + max(env(safe-area-inset-bottom), 0px));
   left: 0;
-  padding: 8px 0 max(env(safe-area-inset-bottom), 8px);
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
   position: fixed;
   right: 0;
   transform: translateY(0);
@@ -1183,79 +1184,239 @@ body {
   z-index: 50;
 }
 
-.bottom-nav--hidden {
+.bottom-bar--hidden {
   transform: translateY(100%);
 }
 
-.bottom-nav__item {
+.bottom-bar__menu {
   align-items: center;
   background: none;
-  border: 0;
-  color: #475569;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  color: #94a3b8;
   cursor: pointer;
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  font-size: 9px;
-  font-weight: 800;
-  gap: 5px;
-  letter-spacing: 0.14em;
-  padding: 6px 4px;
+  flex: 0 0 70%;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 10px;
+  letter-spacing: 0.1em;
+  padding: 0 18px;
+  text-align: left;
   text-transform: uppercase;
   transition: color 200ms ease;
 }
 
-.bottom-nav__item--active {
+.bottom-bar__menu:hover,
+.bottom-bar__menu:active {
   color: #67e8f9;
 }
 
-.bottom-nav__dot {
+.bottom-bar__menu-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom-bar__active-dot {
+  background: #22d3ee;
   border-radius: 999px;
-  display: block;
-  height: 4px;
-  width: 18px;
-  background: rgba(71, 85, 105, 0.5);
-  transition: background 200ms ease, width 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+  flex-shrink: 0;
+  height: 6px;
+  width: 6px;
 }
 
-.bottom-nav__item--active .bottom-nav__dot {
-  background: #67e8f9;
-  box-shadow: 0 0 8px rgba(103, 232, 249, 0.6);
-  width: 24px;
+.bottom-bar__contact {
+  align-items: center;
+  background: none;
+  border: none;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 30%;
+  font-size: 10px;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: 0.16em;
+  padding: 0;
+  text-transform: uppercase;
+  transition: color 200ms ease, background 200ms ease;
 }
 
-.bottom-nav__label {
-  display: block;
+.bottom-bar__contact:hover,
+.bottom-bar__contact:active {
+  background: rgba(34, 211, 238, 0.06);
+  color: #22d3ee;
 }
 
-/* show bottom nav only on mobile */
+/* Hide on desktop */
 @media (min-width: 1100px) {
-  .bottom-nav {
+  .bottom-bar {
     display: none;
   }
 }
 
-/* light mode */
-.light .bottom-nav {
-  background: rgba(238, 247, 248, 0.92);
+/* Light mode */
+.light .bottom-bar {
+  background: rgba(238, 247, 248, 0.94);
   border-top-color: rgba(8, 145, 178, 0.14);
 }
 
-.light .bottom-nav__item {
+.light .bottom-bar__menu {
+  color: #64748b;
+}
+
+.light .bottom-bar__contact {
   color: #94a3b8;
 }
 
-.light .bottom-nav__item--active {
+/* ── Nav dialog (menu sheet) ─────────────────────────────── */
+.nav-dialog {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 200;
+}
+
+.nav-dialog__backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  inset: 0;
+  position: absolute;
+}
+
+.nav-dialog__sheet {
+  animation: sheet-up 280ms cubic-bezier(0.34, 1.1, 0.64, 1) both;
+  background: #0b0f18;
+  border-radius: 20px 20px 0 0;
+  border-top: 1px solid rgba(34, 211, 238, 0.18);
+  bottom: 0;
+  left: 0;
+  padding-bottom: max(env(safe-area-inset-bottom), 16px);
+  position: absolute;
+  right: 0;
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.nav-dialog__header {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px 14px;
+}
+
+.nav-dialog__title {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.nav-dialog__close {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  border-radius: 999px;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  transition: background 200ms, color 200ms;
+  width: 32px;
+}
+
+.nav-dialog__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.nav-dialog__list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.nav-dialog__item {
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  font-size: 15px;
+  font-weight: 600;
+  gap: 14px;
+  padding: 14px 12px;
+  position: relative;
+  text-align: left;
+  transition: background 200ms, color 200ms;
+  width: 100%;
+}
+
+.nav-dialog__item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+}
+
+.nav-dialog__item--active {
+  color: #22d3ee;
+}
+
+.nav-dialog__item--active:hover {
+  background: rgba(34, 211, 238, 0.06);
+  color: #22d3ee;
+}
+
+.nav-dialog__abbr {
+  color: #334155;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  min-width: 22px;
+}
+
+.nav-dialog__item--active .nav-dialog__abbr {
   color: #0e7490;
 }
 
-.light .bottom-nav__dot {
-  background: rgba(148, 163, 184, 0.35);
+.nav-dialog__label {
+  flex: 1;
 }
 
-.light .bottom-nav__item--active .bottom-nav__dot {
-  background: #0891b2;
-  box-shadow: 0 0 8px rgba(8, 145, 178, 0.4);
+.nav-dialog__active-bar {
+  background: #22d3ee;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+  flex-shrink: 0;
+  height: 6px;
+  width: 6px;
+}
+
+/* Light mode dialog */
+.light .nav-dialog__sheet {
+  background: #eef7f8;
+  border-top-color: rgba(8, 145, 178, 0.18);
+}
+
+.light .nav-dialog__item {
+  color: #94a3b8;
+}
+
+.light .nav-dialog__item--active {
+  color: #0891b2;
 }
 
 /* ── Skill Widget (hero section) ────────────────────── */
