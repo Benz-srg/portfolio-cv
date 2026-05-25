@@ -109,7 +109,13 @@ export function LeftNav() {
 
       {/* ── Mobile bottom bar ──────────────────── */}
       <div
-        className={mobileVisible ? "bottom-bar" : "bottom-bar bottom-bar--hidden"}
+        className={
+          menuOpen
+            ? "bottom-bar bottom-bar--hidden"
+            : mobileVisible
+              ? "bottom-bar"
+              : "bottom-bar bottom-bar--hidden"
+        }
         role="navigation"
         aria-label="Mobile navigation"
       >
