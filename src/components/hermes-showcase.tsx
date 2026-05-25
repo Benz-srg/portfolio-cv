@@ -61,7 +61,7 @@ export function HermesShowcase() {
             key={tab.key}
             type="button"
             className="product-showcase__tab"
-            aria-selected={active === tab.key}
+            aria-pressed={active === tab.key}
             onClick={() => setActive(tab.key)}
           >
             {tab.label}

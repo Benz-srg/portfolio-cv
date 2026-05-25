@@ -139,6 +139,37 @@ export const siteContent = {
       showcaseTitle: "Hermes AI in action — Tickets, Projects, and Reports.",
     },
 
+    sajuMe: {
+      eyebrow: "Portfolio Project",
+      hosting: "Engineering Case Study",
+      title: "Saju Me — Saju analysis engine",
+      body: "A fullstack product experiment that turns a traditional Four Pillars domain into a structured web application: deterministic calculation APIs, typed domain models, multilingual UX, and data-rich dashboards for element balance, life cycles, Ten Gods, special stars, and annual forecasts.",
+      repoLabel: "GitHub",
+      modules: [
+        {
+          title: "Domain Engine",
+          signal: "Typed logic · Pure JSON",
+          body: "Models a complex rule-based Saju system into reusable TypeScript modules for pillars, day master strength, element dynamics, luck cycles, interactions, geukguk, yongshin, and natal Ten Gods.",
+        },
+        {
+          title: "API + Product Flow",
+          signal: "Input → Compute → Interpret",
+          body: "Separates calculation, interpretation, and life-period readings into API routes, then carries the result through a polished session-based flow from birth input to analysis dashboard.",
+        },
+        {
+          title: "Visualization + i18n",
+          signal: "Recharts · 4 locales",
+          body: "Turns dense metaphysical output into readable UI with radar charts, strength meters, 10-year timelines, tabbed analysis, and localized content across English, Thai, Japanese, and Korean.",
+        },
+      ],
+      stats: [
+        ["Architecture", "Next.js APIs + TS engine"],
+        ["Domain", "Four Pillars / Ten Gods"],
+        ["UX", "Dashboard + guided form"],
+        ["i18n", "EN / TH / JA / KO"],
+      ] as [string, string][],
+    },
+
     /* ── Skill pie ── */
     skillPie: {
       title: "Skill Split",
@@ -349,6 +380,37 @@ export const siteContent = {
       ] as [string, string][],
       showcaseEyebrow: "Telegram Channels สด",
       showcaseTitle: "Hermes AI ในการใช้งานจริง — Tickets, Projects, Reports",
+    },
+
+    sajuMe: {
+      eyebrow: "Portfolio Project",
+      hosting: "Engineering Case Study",
+      title: "Saju Me — Saju analysis engine",
+      body: "Fullstack product experiment ที่แปลงศาสตร์ Four Pillars ให้กลายเป็น web application แบบเป็นระบบ: calculation API แบบ deterministic, typed domain models, multilingual UX และ dashboard ที่เล่าข้อมูล element balance, life cycles, Ten Gods, special stars และ annual forecasts ให้อ่านง่าย",
+      repoLabel: "GitHub",
+      modules: [
+        {
+          title: "Domain Engine",
+          signal: "Typed logic · Pure JSON",
+          body: "ออกแบบ rule-based Saju system ที่ซับซ้อนให้เป็น TypeScript modules ที่ reuse ได้ ครอบคลุม pillars, day master strength, element dynamics, luck cycles, interactions, geukguk, yongshin และ natal Ten Gods",
+        },
+        {
+          title: "API + Product Flow",
+          signal: "Input → Compute → Interpret",
+          body: "แยก calculation, interpretation และ life-period readings เป็น API routes ชัดเจน แล้วพาผู้ใช้จาก birth input ไปสู่ analysis dashboard ผ่าน session-based flow ที่ใช้งานง่าย",
+        },
+        {
+          title: "Visualization + i18n",
+          signal: "Recharts · 4 locales",
+          body: "เปลี่ยนข้อมูลเชิงลึกที่อ่านยากให้เป็น UI ที่ scan ง่าย ด้วย radar charts, strength meters, timeline รอบชีวิต 10 ปี, tabbed analysis และ localized content ภาษา English, Thai, Japanese, Korean",
+        },
+      ],
+      stats: [
+        ["Architecture", "Next.js APIs + TS engine"],
+        ["Domain", "Four Pillars / Ten Gods"],
+        ["UX", "Dashboard + guided form"],
+        ["i18n", "EN / TH / JA / KO"],
+      ] as [string, string][],
     },
 
     /* ── Skill pie ── */

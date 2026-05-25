@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   Activity,
   ArrowUpRight,
@@ -20,6 +21,7 @@ import {
 import {
   Binance,
   Bitcoin,
+  Chartjs,
   ClaudeAI,
   Gemini,
   GitHubDark,
@@ -29,6 +31,7 @@ import {
   Nextjs,
   Nuxt,
   OpenClaw,
+  Portfolio,
   PostgreSQL,
   ReactDark,
   Redis,
@@ -50,6 +53,7 @@ import { siteContent } from "@/lib/content";
 /* icons that stay constant across locales */
 const paperTradeIcons = [CandlestickChart, Bot, DatabaseZap] as const;
 const hermesIcons = [BrainCircuit, Bot, RadioTower] as const;
+const sajuMeIcons = [TypeScript, Nextjs, Chartjs] as const;
 
 const stack = [
   { name: "React", icon: ReactDark },
@@ -491,6 +495,80 @@ export default function Home() {
 
         {/* ── td-bot Workflow ─────────────────────────── */}
         <WorkflowSection />
+
+        {/* ── Saju Me ─────────────────────────────────── */}
+        <section id="saju-me" className="site-section py-16">
+          <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-amber-200">
+                <Portfolio className="size-4" aria-hidden="true" /> {c.sajuMe.eyebrow}
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-5xl">
+                {c.sajuMe.title}
+              </h2>
+            </div>
+            <a
+              href="https://github.com/Benz-srg/saju-me"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded border border-white/15 bg-white/5 px-4 text-sm font-medium text-slate-200 transition hover:border-amber-300/40 hover:text-amber-200"
+            >
+              <GitHubDark className="size-4" /> {c.sajuMe.repoLabel}
+            </a>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
+              <div className="mb-5 overflow-hidden border border-amber-300/15 bg-white">
+                <Image
+                  src="/saju-me-og.png"
+                  alt="Saju Me project brand image"
+                  width={1536}
+                  height={1024}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+              <div className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-amber-200">
+                <span className="grid size-9 place-items-center rounded border border-amber-300/25 bg-amber-300/10">
+                  <TypeScript className="size-5" aria-hidden="true" />
+                </span>
+                {c.sajuMe.hosting}
+              </div>
+              <p className="leading-8 text-slate-300">{c.sajuMe.body}</p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {c.sajuMe.stats.map(([label, value]) => (
+                  <div key={label} className="border border-white/10 bg-white/[0.035] p-4">
+                    <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{label}</p>
+                    <p className="mt-2 font-semibold text-slate-100">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              {c.sajuMe.modules.map((module, i) => {
+                const Icon = sajuMeIcons[i];
+                return (
+                  <article
+                    key={module.title}
+                    className="group border border-white/10 bg-white/[0.035] p-6 transition hover:border-amber-300/35 hover:bg-amber-300/[0.06]"
+                  >
+                    <div className="module-card__head mb-6 flex items-center justify-between">
+                      <span className="module-card__icon grid size-12 place-items-center rounded border border-amber-300/20 bg-amber-300/10 text-amber-200">
+                        <Icon className="size-6" aria-hidden="true" />
+                      </span>
+                      <span className="module-card__signal text-xs uppercase tracking-[0.2em] text-emerald-300">
+                        {module.signal}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-white">{module.title}</h3>
+                    <p className="mt-4 leading-7 text-slate-400">{module.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
         {/* ── Experience ─────────────────────────────── */}
         <section id="experience" className="site-section grid gap-8 py-16 lg:grid-cols-2">

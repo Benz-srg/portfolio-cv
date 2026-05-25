@@ -9,9 +9,10 @@ const sectionIds = [
   { id: "paper-trade", abbr: "02", en: "Paper Trade", th: "Paper Trade" },
   { id: "hermes", abbr: "03", en: "Hermes AI", th: "Hermes AI" },
   { id: "workflow", abbr: "04", en: "td-bot", th: "td-bot" },
-  { id: "experience", abbr: "05", en: "Experience", th: "ประสบการณ์" },
-  { id: "stack", abbr: "06", en: "Stack", th: "Stack" },
-  { id: "contact", abbr: "07", en: "Contact", th: "ติดต่อ" },
+  { id: "saju-me", abbr: "05", en: "Saju Me", th: "Saju Me" },
+  { id: "experience", abbr: "06", en: "Experience", th: "ประสบการณ์" },
+  { id: "stack", abbr: "07", en: "Stack", th: "Stack" },
+  { id: "contact", abbr: "08", en: "Contact", th: "ติดต่อ" },
 ];
 
 /** Returns the id of the section whose top edge is closest to 35% from viewport top */
@@ -41,7 +42,9 @@ export function LeftNav() {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
-    setActive(getActiveSection());
+    const frame = window.requestAnimationFrame(() => {
+      setActive(getActiveSection());
+    });
 
     const handleScroll = () => {
       const y = window.scrollY;
@@ -56,7 +59,10 @@ export function LeftNav() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Lock body scroll when dialog open
