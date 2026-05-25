@@ -1260,6 +1260,12 @@ body {
 
 /* ── Skill Widget (hero section) ────────────────────── */
 
+.module-card__signal {
+  line-height: 1.45;
+  max-width: 52%;
+  text-align: right;
+}
+
 .skill-widget {
   position: relative;
 }

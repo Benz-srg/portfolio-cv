@@ -59,7 +59,7 @@ export const siteContent = {
         },
         {
           title: "Backend API",
-          signal: "CRUD + Supabase + Binance WS",
+          signal: "Supabase + Binance WS",
           body: "A backend API for trade data, research records, and market streams, connected to Supabase storage and Binance WebSocket price feeds.",
         },
       ],
@@ -273,7 +273,7 @@ export const siteContent = {
         },
         {
           title: "Backend API",
-          signal: "CRUD + Supabase + Binance WS",
+          signal: "Supabase + Binance WS",
           body: "Backend API สำหรับข้อมูลเทรด, research records และ market stream เชื่อมต่อ Supabase และ Binance WebSocket",
         },
       ],
