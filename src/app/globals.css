@@ -488,6 +488,22 @@ body {
   width: 100%;
 }
 
+.product-showcase__image--light {
+  display: none;
+}
+
+.product-showcase__image--dark {
+  display: block;
+}
+
+.light .product-showcase__image--light {
+  display: block;
+}
+
+.light .product-showcase__image--dark {
+  display: none;
+}
+
 .product-showcase__caption {
   align-items: center;
   background: linear-gradient(180deg, rgba(3, 7, 18, 0), rgba(3, 7, 18, 0.92));

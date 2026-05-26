@@ -12,7 +12,8 @@ const viewsContent = {
       label: "Stats",
       title: "Performance stats",
       copy: "Realized P&L, win rate, closed trades, open positions, equity curve, and trade history for BTC/USDT paper trading.",
-      image: "/paper-trade-stats.png",
+      lightImage: "/paper-trade-stats-light.png",
+      darkImage: "/paper-trade-stats-dark.png",
       alt: "Nexus AI BTC/USDT paper trade stats screen showing realized P&L, win rate, equity curve, and trade history",
     },
     {
@@ -20,7 +21,8 @@ const viewsContent = {
       label: "Orders",
       title: "Live order workspace",
       copy: "Candlestick chart, market price card, order markers, timeframe controls, and a buy/long or sell/short order form.",
-      image: "/paper-trade-orders.png",
+      lightImage: "/paper-trade-trade-light.png",
+      darkImage: "/paper-trade-trade-dark.png",
       alt: "Nexus AI BTC/USDT trading screen showing chart, order markers, and place order form",
     },
     {
@@ -28,7 +30,8 @@ const viewsContent = {
       label: "Research",
       title: "AI research dashboard",
       copy: "Indicator accuracy, signal distribution, daily signal timeline, bot beliefs, and raw research records for BTC/USDT review.",
-      image: "/paper-trade-backtest.png",
+      lightImage: "/paper-trade-research-light.png",
+      darkImage: "/paper-trade-research-dark.png",
       alt: "Nexus AI research screen showing indicator accuracy, signal distribution, signal timeline, and bot beliefs",
     },
   ],
@@ -38,7 +41,8 @@ const viewsContent = {
       label: "สถิติ",
       title: "สถิติประสิทธิภาพ",
       copy: "P&L จริง, win rate, trades ที่ปิดแล้ว, positions ที่เปิดอยู่, equity curve และประวัติการเทรด BTC/USDT",
-      image: "/paper-trade-stats.png",
+      lightImage: "/paper-trade-stats-light.png",
+      darkImage: "/paper-trade-stats-dark.png",
       alt: "หน้า stats ของ Nexus AI แสดง P&L, win rate, equity curve และประวัติเทรด",
     },
     {
@@ -46,7 +50,8 @@ const viewsContent = {
       label: "Orders",
       title: "หน้าสั่งซื้อขาย",
       copy: "กราฟแท่งเทียน, ราคาตลาด, จุด order บนกราฟ, ตัวเลือก timeframe และฟอร์ม BUY/SELL",
-      image: "/paper-trade-orders.png",
+      lightImage: "/paper-trade-trade-light.png",
+      darkImage: "/paper-trade-trade-dark.png",
       alt: "หน้าเทรด Nexus AI แสดงกราฟ, order markers และฟอร์มสั่งซื้อขาย",
     },
     {
@@ -54,7 +59,8 @@ const viewsContent = {
       label: "Research",
       title: "แดชบอร์ด Research ของ AI",
       copy: "ความแม่นยำ indicator, การกระจาย signal, timeline รายวัน, bot beliefs และ raw research records สำหรับรีวิว BTC/USDT",
-      image: "/paper-trade-backtest.png",
+      lightImage: "/paper-trade-research-light.png",
+      darkImage: "/paper-trade-research-dark.png",
       alt: "หน้า research ของ Nexus AI แสดง indicator accuracy, signal distribution, timeline และ bot beliefs",
     },
   ],
@@ -101,12 +107,22 @@ export function ProductShowcase() {
           <span>{activeView.label}</span>
         </div>
         <Image
-          key={activeView.image}
-          src={activeView.image}
+          key={`${activeView.key}-light`}
+          src={activeView.lightImage}
           alt={activeView.alt}
           width={2048}
           height={1152}
-          className="product-showcase__image"
+          className="product-showcase__image product-showcase__image--light"
+          priority={activeView.key === "stats"}
+        />
+        <Image
+          key={`${activeView.key}-dark`}
+          src={activeView.darkImage}
+          alt=""
+          aria-hidden="true"
+          width={2048}
+          height={1152}
+          className="product-showcase__image product-showcase__image--dark"
           priority={activeView.key === "stats"}
         />
         <div className="product-showcase__caption">
