@@ -8,9 +8,9 @@ const tabContent = {
   en: [
     {
       key: "tickets",
-      label: "Tickets",
-      src: "/hermes-tickets.png",
-      caption: "Hermes AI clarifies scope, defines DoD, then creates the ticket in Paperclip AI.",
+      label: "Paperclip AI",
+      src: "/paperclip-ai-connects.png",
+      caption: "Paperclip AI Connects links Telegram, GitHub, Notion, Slack, Google Drive, and Discord for agent workflows.",
     },
     {
       key: "projects",
@@ -28,9 +28,9 @@ const tabContent = {
   th: [
     {
       key: "tickets",
-      label: "Tickets",
-      src: "/hermes-tickets.png",
-      caption: "Hermes AI ชวนยืนยัน scope และ DoD ก่อนสร้าง ticket ใน Paperclip AI",
+      label: "Paperclip AI",
+      src: "/paperclip-ai-connects.png",
+      caption: "Paperclip AI Connects เชื่อม Telegram, GitHub, Notion, Slack, Google Drive และ Discord สำหรับ agent workflow",
     },
     {
       key: "projects",
