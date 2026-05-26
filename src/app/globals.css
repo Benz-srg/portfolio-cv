@@ -1624,13 +1624,63 @@ body {
 }
 
 /* light mode */
+.light .skill-widget-full {
+  background: rgba(255, 255, 255, 0.86) !important;
+  border-color: rgba(8, 145, 178, 0.18) !important;
+  box-shadow: 0 24px 70px rgba(8, 145, 178, 0.12);
+}
+
+.light .skill-widget-full .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+.light .skill-widget__title,
+.light .vibe-coding__title,
+.light .skill-bar-label {
+  color: #334155;
+}
+
+.light .skill-bar-label strong {
+  color: #0f172a;
+}
+
 .light .skill-pie__hole { background: var(--site-bg); }
 .light .skill-legend-item { color: #475569; }
 .light .skill-legend-item strong { color: #0f172a; }
+.light .skill-bar-track {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.light .skill-stack-tag {
+  background: rgba(255, 255, 255, 0.72);
+  color: #334155;
+}
+
+.light .skill-stack-tag--fe {
+  border-color: rgba(8, 145, 178, 0.3);
+  color: #0e7490;
+}
+
+.light .skill-stack-tag--be {
+  border-color: rgba(4, 120, 87, 0.28);
+  color: #047857;
+}
+
+.light .vibe-coding,
+.light .skill-vibe-sep,
+.light .skill-stats-row {
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.light .vibe-coding__label,
+.light .skill-stat-unit {
+  color: #64748b;
+}
+
 .light .vibe-chip {
   background: rgba(255, 255, 255, 0.6);
   border-color: rgba(15, 23, 42, 0.1);
-  color: #64748b;
+  color: #334155;
 }
 .light .vibe-chip--active {
   background: rgba(8, 145, 178, 0.1);
