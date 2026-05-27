@@ -7,13 +7,16 @@ import {
   Bot,
   BrainCircuit,
   CandlestickChart,
+  CheckCircle2,
   Code2,
   DatabaseZap,
+  Lightbulb,
   Mail,
   MapPin,
   Network,
   Phone,
   RadioTower,
+  ShieldCheck,
   Sparkles,
   Terminal,
   Workflow,
@@ -279,6 +282,91 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── Project Case Studies ───────────────────── */}
+        <section id="projects" className="site-section project-cases py-16">
+          <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">
+                <Sparkles size={16} /> {c.projectCases.eyebrow}
+              </p>
+              <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-white sm:text-5xl">
+                {c.projectCases.title}
+              </h2>
+              <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+                {c.projectCases.copy}
+              </p>
+            </div>
+          </div>
+
+          <div className="project-case-list">
+            {c.projectCases.items.map((project) => (
+              <article key={project.title} className="project-case-card">
+                <div className="project-case-card__head">
+                  <span className="project-case-card__index">{project.index}</span>
+                  <div>
+                    <div className="project-case-card__meta">
+                      <span>{project.tag}</span>
+                      <span className="project-case-card__ai">
+                        <Sparkles size={13} />
+                        {c.projectCases.builtBadge}
+                      </span>
+                    </div>
+                    <h3>{project.title}</h3>
+                  </div>
+                </div>
+
+                <p className="project-case-card__premise">
+                  <strong>Premise.</strong> {project.premise}
+                </p>
+
+                <div className="project-case-card__grid">
+                  <div className="project-case-col">
+                    <p className="project-case-col__label">
+                      <Lightbulb size={14} /> {c.projectCases.columns.built}
+                    </p>
+                    <ul>
+                      {project.built.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="project-case-col">
+                    <p className="project-case-col__label">
+                      <BrainCircuit size={14} /> {c.projectCases.columns.ai}
+                    </p>
+                    <ul>
+                      {project.ai.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="project-case-col">
+                    <p className="project-case-col__label">
+                      <ShieldCheck size={14} /> {c.projectCases.columns.proof}
+                    </p>
+                    <p className="project-case-card__proof">{project.proof}</p>
+                    <div className="project-case-stack">
+                      {project.stack.map((item) => (
+                        <span key={item}>{item}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="project-case-card__footer">
+                  <span>
+                    <CheckCircle2 size={15} />
+                    AI-assisted build verified
+                  </span>
+                  <a href={project.href} target={project.href.startsWith("#") ? undefined : "_blank"} rel={project.href.startsWith("#") ? undefined : "noreferrer"}>
+                    {project.linkLabel} <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 

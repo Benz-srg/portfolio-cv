@@ -41,6 +41,80 @@ export const siteContent = {
       panelStatus: "Online",
     },
 
+    projectCases: {
+      eyebrow: "Selected Projects",
+      title: "Readable case studies, built with AI-assisted workflow.",
+      copy: "Each project is framed as a product problem, what I built, how AI helped the build, and the proof you can inspect.",
+      builtBadge: "Built with AI",
+      columns: {
+        built: "What I built",
+        ai: "AI workflow",
+        proof: "Proof",
+      },
+      items: [
+        {
+          index: "01",
+          title: "Nexus AI Paper Trade",
+          tag: "Trading web app · BTC/USDT · live dashboard",
+          premise: "A paper trading lab that connects chart review, order history, research signals, and Telegram summaries into one feedback loop.",
+          built: [
+            "Next.js trading dashboard with light/dark screenshots, chart views, portfolio table, stats, and research panels.",
+            "Backend API layer for trade records, research data, Binance market stream, and portfolio performance.",
+            "Telegram research output that turns market indicators into a daily BTC/USDT review brief.",
+          ],
+          ai: [
+            "Codex and Claude Code for frontend build, responsive fixes, component refactors, and production build repairs.",
+            "OpenClaw + MiniMax 2.5 for the Telegram agent that reads indicators and prepares market summaries.",
+            "Playwright/browser checks for mobile menu, theme screenshots, and visual verification.",
+          ],
+          proof: "Live app, production build, theme-specific product captures, and Telegram research output.",
+          stack: ["Next.js", "TypeScript", "Supabase", "Binance WS", "Telegram", "OpenClaw"],
+          href: "https://frontend-sigma-murex-aakt3b4x1w.vercel.app/",
+          linkLabel: "Live app",
+        },
+        {
+          index: "02",
+          title: "Hermes AI",
+          tag: "Telegram-native AI project manager",
+          premise: "A Telegram workflow that turns loose requests into scoped tickets, Definition of Done, execution tracking, QA review, and reports.",
+          built: [
+            "Telegram-first brainstorm interface that clarifies requirements before creating any ticket.",
+            "Paperclip AI ticket creation with DoD checklist and unit-test expectations.",
+            "Project/report channels that keep execution, QA, and delivery status visible.",
+          ],
+          ai: [
+            "Hermes AI for requirement clarification and project-management conversation loops.",
+            "Paperclip AI for structured task creation and TDD-oriented execution handoff.",
+            "Codex for portfolio integration, content structure, and UI polish.",
+          ],
+          proof: "Live Telegram channel screenshots, ticket/project/report flows, and local workflow demo.",
+          stack: ["Telegram", "Paperclip AI", "Codex", "TDD", "QA"],
+          href: "#hermes",
+          linkLabel: "View flow",
+        },
+        {
+          index: "03",
+          title: "Saju Me",
+          tag: "Fullstack TypeScript domain engine",
+          premise: "A rule-heavy Four Pillars product transformed into typed calculation APIs, localized dashboards, and readable visual analysis.",
+          built: [
+            "Typed domain engine for pillars, day master strength, element dynamics, luck cycles, interactions, and Ten Gods.",
+            "Session-based product flow from birth input to computed analysis dashboard.",
+            "Multilingual UI with charts, strength meters, timeline views, tabs, and localized interpretation.",
+          ],
+          ai: [
+            "Codex and Claude Code for TypeScript refactors, API flow, UI structure, and content iteration.",
+            "AI-assisted domain decomposition to keep calculation logic separate from interpretation and UI.",
+            "Build verification and GitHub push workflow handled through agent-assisted development.",
+          ],
+          proof: "GitHub repo, deterministic TypeScript engine, API-backed UX, and multilingual dashboard.",
+          stack: ["Next.js", "TypeScript", "API Routes", "Recharts", "i18n"],
+          href: "https://github.com/Benz-srg/saju-me",
+          linkLabel: "GitHub",
+        },
+      ],
+    },
+
     /* ── Paper Trade ── */
     paperTrade: {
       eyebrow: "Featured Project",
@@ -285,6 +359,80 @@ export const siteContent = {
       cta2: "GitHub",
       panelLabel: "Paper Trade Engine",
       panelStatus: "ออนไลน์",
+    },
+
+    projectCases: {
+      eyebrow: "Selected Projects",
+      title: "Case study ที่อ่านง่าย และ build ผ่าน AI-assisted workflow",
+      copy: "แต่ละโปรเจกต์เล่าแบบสั้นและตรง: ปัญหาคืออะไร, ผม build อะไร, AI ช่วยตรงไหน และมีอะไรให้ตรวจดูได้",
+      builtBadge: "Built with AI",
+      columns: {
+        built: "สิ่งที่ build",
+        ai: "AI workflow",
+        proof: "หลักฐาน",
+      },
+      items: [
+        {
+          index: "01",
+          title: "Nexus AI Paper Trade",
+          tag: "Trading web app · BTC/USDT · live dashboard",
+          premise: "Paper trading lab ที่รวม chart review, order history, research signals และ Telegram summaries ให้เป็น feedback loop เดียว",
+          built: [
+            "Next.js trading dashboard พร้อม light/dark screenshots, chart views, portfolio table, stats และ research panels",
+            "Backend API layer สำหรับ trade records, research data, Binance market stream และ portfolio performance",
+            "Telegram research output ที่แปลง indicator เป็นรายงาน BTC/USDT รายวัน",
+          ],
+          ai: [
+            "ใช้ Codex และ Claude Code ช่วย build frontend, แก้ responsive, refactor component และซ่อม production build",
+            "ใช้ OpenClaw + MiniMax 2.5 สำหรับ Telegram agent ที่อ่าน indicator และสรุปตลาด",
+            "ใช้ Playwright/browser checks ตรวจ mobile menu, theme screenshots และ visual verification",
+          ],
+          proof: "Live app, production build, product captures แยก theme และ Telegram research output",
+          stack: ["Next.js", "TypeScript", "Supabase", "Binance WS", "Telegram", "OpenClaw"],
+          href: "https://frontend-sigma-murex-aakt3b4x1w.vercel.app/",
+          linkLabel: "ดูเว็บสด",
+        },
+        {
+          index: "02",
+          title: "Hermes AI",
+          tag: "Telegram-native AI project manager",
+          premise: "Workflow บน Telegram ที่เปลี่ยนคำสั่งกว้าง ๆ เป็น ticket, Definition of Done, execution tracking, QA review และ reports",
+          built: [
+            "Telegram-first brainstorm interface ที่ช่วย clarify requirement ก่อนสร้าง ticket",
+            "Paperclip AI ticket creation พร้อม DoD checklist และ unit-test expectations",
+            "Project/report channels ที่ทำให้ execution, QA และ delivery status มองเห็นได้",
+          ],
+          ai: [
+            "ใช้ Hermes AI สำหรับ requirement clarification และ project-management conversation loops",
+            "ใช้ Paperclip AI สร้าง task แบบมีโครงสร้างและรองรับ TDD handoff",
+            "ใช้ Codex สำหรับ portfolio integration, content structure และ UI polish",
+          ],
+          proof: "Telegram channel screenshots, ticket/project/report flows และ local workflow demo",
+          stack: ["Telegram", "Paperclip AI", "Codex", "TDD", "QA"],
+          href: "#hermes",
+          linkLabel: "ดู flow",
+        },
+        {
+          index: "03",
+          title: "Saju Me",
+          tag: "Fullstack TypeScript domain engine",
+          premise: "ระบบ Four Pillars ที่ rule-heavy ถูกแปลงเป็น typed calculation APIs, localized dashboards และ visual analysis ที่อ่านง่าย",
+          built: [
+            "Typed domain engine สำหรับ pillars, day master strength, element dynamics, luck cycles, interactions และ Ten Gods",
+            "Session-based product flow จาก birth input ไปจนถึง analysis dashboard",
+            "Multilingual UI พร้อม charts, strength meters, timeline, tabs และ localized interpretation",
+          ],
+          ai: [
+            "ใช้ Codex และ Claude Code ช่วย refactor TypeScript, API flow, UI structure และ content iteration",
+            "ใช้ AI-assisted domain decomposition เพื่อแยก calculation logic ออกจาก interpretation และ UI",
+            "ใช้ agent-assisted workflow สำหรับ build verification และ GitHub push",
+          ],
+          proof: "GitHub repo, deterministic TypeScript engine, API-backed UX และ multilingual dashboard",
+          stack: ["Next.js", "TypeScript", "API Routes", "Recharts", "i18n"],
+          href: "https://github.com/Benz-srg/saju-me",
+          linkLabel: "GitHub",
+        },
+      ],
     },
 
     paperTrade: {
