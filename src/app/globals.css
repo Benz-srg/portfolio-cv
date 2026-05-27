@@ -4757,3 +4757,8 @@ body {
   position: relative;
   z-index: 1;
 }
+
+/* ── Adaptive icons: light-variant (dark marks) → invert in dark mode ─────── */
+:not(.light) .icon-adaptive {
+  filter: invert(1);
+}

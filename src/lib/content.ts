@@ -32,9 +32,9 @@ export const siteContent = {
 
     /* ── Hero ── */
     hero: {
-      badge: "Fullstack Developer / Trading Systems",
-      name: "Ekkasit Songrungruang",
-      copy: "Chiang Mai and Bangkok based fullstack developer with almost 7 years of experience building web apps, crypto trading interfaces, backend APIs, and AI-assisted development workflows.",
+      badge: "Hi, I'm Ekkasit SRG",
+      name: "I build practical web apps with AI-assisted workflows.",
+      copy: "Fullstack developer based in Chiang Mai and Bangkok. I work across React/Next.js, TypeScript, backend APIs, data workflows, trading interfaces, and agent-driven delivery.",
       cta1: "View Paper Trade",
       cta2: "GitHub",
       panelLabel: "Paper Trade Engine",
@@ -358,9 +358,9 @@ export const siteContent = {
     nav: { brand: "Ekkasit SRG" },
 
     hero: {
-      badge: "Fullstack Developer / ระบบเทรดคริปโต",
-      name: "เอกสิทธิ์ ทรงรุ่งเรือง",
-      copy: "Fullstack Developer จากเชียงใหม่และกรุงเทพฯ มีประสบการณ์เกือบ 7 ปีในการสร้าง web app, crypto trading interface, backend API และ AI-assisted development workflow",
+      badge: "สวัสดีครับ ผม Ekkasit SRG",
+      name: "ผมสร้าง web app ที่ใช้งานจริงด้วย AI-assisted workflow",
+      copy: "Fullstack developer จากเชียงใหม่และกรุงเทพฯ ทำงานกับ React/Next.js, TypeScript, backend API, data workflow, trading interface และ agent-driven delivery",
       cta1: "ดู Paper Trade",
       cta2: "GitHub",
       panelLabel: "Paper Trade Engine",

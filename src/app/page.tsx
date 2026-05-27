@@ -31,7 +31,7 @@ import {
   Chartjs,
   ClaudeAI,
   Gemini,
-  GitHubDark,
+  GitHubLight,
   JavaScript,
   MongoDBDark,
   NestJS,
@@ -45,7 +45,7 @@ import {
   Supabase,
   Telegram,
   TypeScript,
-  VercelDark,
+  VercelLight,
   Vue,
 } from "@ridemountainpig/svgl-react";
 import { ProductShowcase } from "@/components/product-showcase";
@@ -84,8 +84,8 @@ const stack = [
   { name: "MiniMax 2.5", icon: BrainCircuit },
   { name: "Claude", icon: ClaudeAI },
   { name: "Gemini", icon: Gemini },
-  { name: "GitHub", icon: GitHubDark },
-  { name: "Vercel", icon: VercelDark },
+  { name: "GitHub", icon: GitHubLight, needsInvert: true },
+  { name: "Vercel", icon: VercelLight, needsInvert: true },
 ];
 
 export default function Home() {
@@ -389,7 +389,7 @@ export default function Home() {
                   </span>
                   <div className="project-case-card__actions">
                     <a href={project.githubHref} target="_blank" rel="noreferrer">
-                      <GitHubDark className="size-4" /> GitHub
+                      <GitHubLight className="size-4 icon-adaptive" /> GitHub
                     </a>
                     <button
                       className="project-demo-button"
@@ -636,7 +636,7 @@ export default function Home() {
               rel="noreferrer"
               className="inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded border border-white/15 bg-white/5 px-4 text-sm font-medium text-slate-200 transition hover:border-amber-300/40 hover:text-amber-200"
             >
-              <GitHubDark className="size-4" /> {c.sajuMe.repoLabel}
+              <GitHubLight className="size-4 icon-adaptive" /> {c.sajuMe.repoLabel}
             </a>
           </div>
 
@@ -747,7 +747,7 @@ export default function Home() {
                   key={tool.name}
                   className="reveal-pop reveal-stagger flex min-h-24 flex-col justify-between border border-white/10 bg-white/[0.035] p-4"
                 >
-                  <Icon className="size-8" aria-hidden="true" />
+                  <Icon className={`size-8${tool.needsInvert ? " icon-adaptive" : ""}`} aria-hidden="true" />
                   <span className="mt-4 text-sm font-medium text-slate-200">{tool.name}</span>
                 </div>
               );
@@ -836,7 +836,7 @@ export default function Home() {
                 />
                 <div className="project-demo-modal__actions">
                   <a href={activeDemo.githubHref} target="_blank" rel="noreferrer">
-                    <GitHubDark className="size-4" /> GitHub
+                    <GitHubLight className="size-4 icon-adaptive" /> GitHub
                   </a>
                   <a
                     href={activeDemo.href}
