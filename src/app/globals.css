@@ -1,25 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05070b;
+  --background: #070a0f;
   --foreground: #f8fafc;
-  --site-bg: #05070b;
+  --site-bg: #070a0f;
   --site-fg: #f8fafc;
-  --site-grid: radial-gradient(circle at 20% 10%, rgba(34, 211, 238, 0.18), transparent 28%),
-    radial-gradient(circle at 80% 0%, rgba(34, 197, 94, 0.12), transparent 24%),
-    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  --site-grid: radial-gradient(circle at 12% 10%, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at 82% 4%, rgba(16, 185, 129, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(8, 47, 73, 0.46), rgba(7, 10, 15, 0.16) 46%, rgba(7, 10, 15, 0.72));
+
+  /* Nimbus night palette */
+  --nimbus-sky: linear-gradient(180deg, #0f0e2e 0%, #1e1b4b 45%, #312e81 100%);
+  --nimbus-cloud: rgba(49, 46, 129, 0.62);
+  --nimbus-cloud-edge: rgba(196, 181, 253, 0.18);
+  --nimbus-accent: #a78bfa;
+  --nimbus-accent-light: #c4b5fd;
+  --nimbus-shadow: 0 18px 60px -24px rgba(15, 23, 42, 0.55),
+                   0 6px 18px -12px rgba(67, 56, 202, 0.35);
 }
 
 .light {
-  --background: #eef7f8;
-  --foreground: #0f172a;
-  --site-bg: #eef7f8;
-  --site-fg: #0f172a;
-  --site-grid: radial-gradient(circle at 20% 10%, rgba(8, 145, 178, 0.16), transparent 28%),
-    radial-gradient(circle at 80% 0%, rgba(22, 163, 74, 0.14), transparent 24%),
-    linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  --background: #e8f4fd;
+  --foreground: #1e1b4b;
+  --site-bg: #e8f4fd;
+  --site-fg: #1e1b4b;
+  --site-grid: none;
+
+  /* Nimbus day palette */
+  --nimbus-sky: linear-gradient(180deg, #e0f2fe 0%, #ddd6fe 60%, #fce7f3 100%);
+  --nimbus-cloud: rgba(255, 255, 255, 0.82);
+  --nimbus-cloud-edge: rgba(255, 255, 255, 0.65);
+  --nimbus-accent: #a78bfa;
+  --nimbus-accent-light: #c4b5fd;
+  --nimbus-shadow: 0 18px 60px -24px rgba(99, 102, 241, 0.28),
+                   0 6px 18px -12px rgba(56, 189, 248, 0.18),
+                   0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 @theme inline {
@@ -33,6 +48,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.light body {
+  background: var(--nimbus-sky);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-nimbus-sans, "Manrope"), Arial, sans-serif;
 }
 
 body {
@@ -718,9 +740,9 @@ body {
 
 .light .product-showcase__tab:hover,
 .light .product-showcase__tab[aria-selected="true"] {
-  background: rgba(8, 145, 178, 0.12);
-  border-color: rgba(8, 145, 178, 0.3);
-  color: #0e7490;
+  background: rgba(167, 139, 250, 0.14);
+  border-color: rgba(167, 139, 250, 0.36);
+  color: #7c3aed;
 }
 
 .product-showcase__frame::after,
@@ -4083,4 +4105,655 @@ body {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   NIMBUS DAY THEME
+   Applies on top of the existing .light rules when light mode is active.
+   Soft cloudy aesthetic: sky gradient, cloud glass cards, lavender accents,
+   rounded corners, floating animations, Manrope typography.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Cloud drift animations ─────────────────────────────────────────────── */
+@keyframes nimbus-drift-r {
+  from { transform: translateX(-20vw) translateY(0); }
+  to   { transform: translateX(115vw) translateY(-20px); }
+}
+@keyframes nimbus-drift-l {
+  from { transform: translateX(115vw) translateY(0); }
+  to   { transform: translateX(-20vw) translateY(20px); }
+}
+@keyframes nimbus-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes nimbus-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Global typography in light mode ───────────────────────────────────── */
+.light body,
+.light main,
+.light p,
+.light span:not([class]),
+.light li {
+  font-family: var(--font-nimbus-sans, "Manrope"), Arial, sans-serif;
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4 {
+  font-family: var(--font-nimbus-display, "Plus Jakarta Sans"), "Manrope", Arial, sans-serif;
+  color: #1e1b4b;
+}
+
+/* ── Selection ──────────────────────────────────────────────────────────── */
+.light ::selection {
+  background: rgba(167, 139, 250, 0.28);
+  color: #312e81;
+}
+
+/* ── Animated cloud backdrop via body pseudo ─────────────────────────────*/
+.light body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.light body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 15%, rgba(125, 211, 252, 0.35), transparent),
+    radial-gradient(ellipse 50% 35% at 75% 10%, rgba(196, 181, 253, 0.30), transparent),
+    radial-gradient(ellipse 40% 30% at 50% 60%, rgba(252, 231, 243, 0.45), transparent),
+    radial-gradient(ellipse 55% 40% at 10% 80%, rgba(165, 243, 252, 0.20), transparent);
+  animation: nimbus-float 12s ease-in-out infinite;
+}
+
+/* ── Left nav — lavender palette ────────────────────────────────────────── */
+.light .left-nav__track {
+  background: linear-gradient(180deg, transparent, rgba(167, 139, 250, 0.25) 30%, rgba(167, 139, 250, 0.25) 70%, transparent);
+}
+
+.light .left-nav__item:hover .left-nav__dot {
+  background: rgba(167, 139, 250, 0.7);
+}
+
+.light .left-nav__item--active .left-nav__dot {
+  background: #a78bfa;
+  box-shadow: 0 0 14px rgba(167, 139, 250, 0.65);
+}
+
+.light .left-nav__item--active .left-nav__ring {
+  border-color: rgba(167, 139, 250, 0.35);
+}
+
+.light .left-nav__label {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 8px;
+  color: #64748b;
+  backdrop-filter: blur(10px);
+}
+
+.light .left-nav__item--active .left-nav__label {
+  background: rgba(167, 139, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.35);
+  color: #7c3aed;
+}
+
+.light .left-nav__item--active .left-nav__num {
+  color: rgba(167, 139, 250, 0.7);
+}
+
+/* ── Bottom bar ─────────────────────────────────────────────────────────── */
+.light .bottom-bar {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-top: 1px solid rgba(167, 139, 250, 0.18) !important;
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+.light .bottom-bar__menu {
+  color: #475569;
+  font-family: var(--font-nimbus-sans, "Manrope"), Arial, sans-serif;
+}
+
+.light .bottom-bar__menu:hover,
+.light .bottom-bar__menu:active {
+  color: #7c3aed;
+}
+
+.light .bottom-bar__active-dot {
+  background: #a78bfa;
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+}
+
+.light .bottom-bar__contact:hover,
+.light .bottom-bar__contact:active {
+  background: rgba(167, 139, 250, 0.08);
+  color: #7c3aed;
+}
+
+/* ── Nav dialog ─────────────────────────────────────────────────────────── */
+.light .nav-dialog__sheet {
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 24px 24px 0 0;
+  backdrop-filter: blur(24px);
+}
+
+.light .nav-dialog__item {
+  border-radius: 14px;
+  color: #64748b;
+}
+
+.light .nav-dialog__item:hover {
+  background: rgba(167, 139, 250, 0.06);
+  color: #1e1b4b;
+}
+
+.light .nav-dialog__item--active {
+  color: #7c3aed;
+}
+
+.light .nav-dialog__item--active:hover {
+  background: rgba(167, 139, 250, 0.08);
+}
+
+.light .nav-dialog__active-bar {
+  background: #a78bfa;
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.55);
+}
+
+/* ── Theme switch ───────────────────────────────────────────────────────── */
+.light .theme-switch {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 999px;
+  color: #475569;
+  backdrop-filter: blur(10px);
+}
+
+.light .theme-switch:hover {
+  border-color: rgba(167, 139, 250, 0.45);
+}
+
+.light .theme-switch__track {
+  background: rgba(240, 235, 255, 0.8);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+}
+
+.light .theme-switch__thumb[data-light="true"] {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  color: #7c3aed;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.light .hero-kicker {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(167, 139, 250, 0.3) !important;
+  border-radius: 999px !important;
+  color: #7c3aed !important;
+  backdrop-filter: blur(10px);
+}
+
+.light .hero-kicker::after {
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.32), transparent);
+}
+
+.light .hero-panel > div:last-child::before {
+  background: linear-gradient(115deg, transparent, rgba(167, 139, 250, 0.10), transparent);
+}
+
+/* ── Motion cards (skill / stack section) ───────────────────────────────── */
+.light .motion-card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 18px 60px -24px rgba(99, 102, 241, 0.28),
+              0 6px 18px -12px rgba(56, 189, 248, 0.18),
+              0 1px 2px rgba(0, 0, 0, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+.light .motion-card:hover {
+  box-shadow: 0 28px 90px -24px rgba(99, 102, 241, 0.40),
+              0 12px 30px -12px rgba(56, 189, 248, 0.22) !important;
+  transform: translateY(-4px);
+}
+
+/* ── Live status dot → lavender/mint pulse ──────────────────────────────── */
+.light .live-status span {
+  animation: nimbus-float 3s ease-in-out infinite;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45);
+}
+
+/* ── Product showcase tabs ──────────────────────────────────────────────── */
+.light .product-showcase__tab {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border-radius: 12px !important;
+  color: #64748b !important;
+  backdrop-filter: blur(8px);
+  transition: all 220ms ease;
+}
+
+/* ── Product showcase frame ─────────────────────────────────────────────── */
+.light .product-showcase__frame {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(167, 139, 250, 0.22) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 28px 90px rgba(99, 102, 241, 0.18) !important;
+  overflow: hidden;
+}
+
+.light .product-showcase__frame::after {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+}
+
+.light .product-showcase__hud span {
+  background: rgba(255, 255, 255, 0.86) !important;
+  border: 1px solid rgba(167, 139, 250, 0.26) !important;
+  border-radius: 8px;
+  color: #7c3aed !important;
+  backdrop-filter: blur(8px);
+}
+
+.light .product-showcase__caption {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92)) !important;
+}
+
+.light .product-showcase__caption p {
+  color: #1e1b4b !important;
+}
+
+.light .product-showcase__caption span {
+  color: #475569 !important;
+}
+
+/* ── Video poster ───────────────────────────────────────────────────────── */
+.light .video-poster {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(125, 211, 252, 0.22), transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(196, 181, 253, 0.18), transparent 50%),
+    rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(167, 139, 250, 0.18) !important;
+  border-radius: 20px;
+}
+
+.light .video-poster__screen {
+  border: 1px solid rgba(167, 139, 250, 0.18) !important;
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(99, 102, 241, 0.16) !important;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.light .video-launch {
+  background: linear-gradient(135deg, #7dd3fc, #a78bfa) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 18px 46px rgba(167, 139, 250, 0.40) !important;
+}
+
+.light .video-launch:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 24px 60px rgba(167, 139, 250, 0.52) !important;
+}
+
+/* ── Research terminal ──────────────────────────────────────────────────── */
+.light .research-terminal {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(167, 139, 250, 0.18) !important;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+
+.light .research-row {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 10px;
+}
+
+.light .research-row strong { color: #1e1b4b !important; }
+
+/* ── Skill widget ───────────────────────────────────────────────────────── */
+.light .skill-widget-full {
+  background: rgba(255, 255, 255, 0.86) !important;
+  border: 1px solid rgba(167, 139, 250, 0.22) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 24px 70px rgba(99, 102, 241, 0.16) !important;
+  backdrop-filter: blur(20px);
+}
+
+.light .skill-pie__ring {
+  background: conic-gradient(#a78bfa 0% var(--fe-pct), #34d399 var(--fe-pct) 100%);
+}
+
+.light .skill-pie__hole { background: rgba(255, 255, 255, 0.95); }
+
+.light .skill-pie__center-fe { color: #a78bfa; }
+.light .skill-legend-dot--fe { background: #a78bfa; box-shadow: 0 0 8px rgba(167, 139, 250, 0.55); }
+
+.light .skill-bar-fill--fe {
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.45);
+}
+
+.light .skill-stat-num { color: #a78bfa; }
+
+.light .vibe-chip--active {
+  background: rgba(167, 139, 250, 0.10);
+  border-color: rgba(167, 139, 250, 0.28);
+  color: #7c3aed;
+}
+
+.light .vibe-chip--active::before { background: #a78bfa; }
+
+.light .skill-stack-tag--fe {
+  border-color: rgba(167, 139, 250, 0.22);
+  color: #7c3aed;
+}
+
+/* ── Hosting badges ─────────────────────────────────────────────────────── */
+.light .hosting-badge {
+  border-radius: 8px;
+}
+
+/* ── td-bot / workflow charts ───────────────────────────────────────────── */
+.light .tdb-chart,
+.light .tdb-meta-card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(167, 139, 250, 0.14) !important;
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+}
+
+.light .tdb-section-title { color: #7c3aed; }
+.light .tdb-cmd {
+  background: rgba(167, 139, 250, 0.10);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 6px;
+  color: #6d28d9;
+}
+
+/* ── Hermes flow ────────────────────────────────────────────────────────── */
+.light .hermes-flow {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(139, 92, 246, 0.18) !important;
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+}
+
+/* ── Workflow cards ─────────────────────────────────────────────────────── */
+.light .workflow-card,
+.light .workflow-cron {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(167, 139, 250, 0.15) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(18px);
+}
+
+.light .workflow-card::after,
+.light .workflow-cron::after {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+}
+
+.light .workflow-card__title { color: #7c3aed; }
+
+.light .workflow-step {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 12px;
+}
+
+.light .workflow-step:not(:last-child)::after {
+  background: linear-gradient(180deg, rgba(167, 139, 250, 0.52), transparent);
+}
+
+.light .workflow-step > span {
+  background: rgba(167, 139, 250, 0.12);
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  border-radius: 10px;
+  color: #7c3aed;
+}
+
+.light .workflow-step h3 { color: #1e1b4b !important; }
+.light .workflow-lang {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 999px;
+  color: #7c3aed;
+}
+.light .workflow-lang:hover {
+  background: rgba(167, 139, 250, 0.08);
+  border-color: rgba(167, 139, 250, 0.38);
+}
+
+.light .workflow-mini-list li {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 10px;
+}
+
+.light .workflow-mini-list li::before { color: #34d399; }
+
+.light .workflow-db div {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 10px;
+}
+
+.light .workflow-cron__table div {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 10px;
+}
+
+.light .workflow-cron__table span { color: #34d399; }
+
+/* ── Flowchart ──────────────────────────────────────────────────────────── */
+.light .flow-process {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 14px;
+}
+
+.light .flow-db-panel {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(167, 139, 250, 0.12) !important;
+  border-radius: 14px;
+}
+
+.light .flow-db-row {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(167, 139, 250, 0.10) !important;
+  border-radius: 8px;
+}
+
+/* ── Project case cards ─────────────────────────────────────────────────── */
+.light .project-case-card {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 24px 70px rgba(99, 102, 241, 0.12) !important;
+  backdrop-filter: blur(20px);
+}
+
+.light .project-case-card__index {
+  background: rgba(167, 139, 250, 0.12);
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  border-radius: 12px;
+  color: #7c3aed !important;
+}
+
+.light .project-case-col {
+  background: rgba(255, 255, 255, 0.66) !important;
+  border: 1px solid rgba(167, 139, 250, 0.10) !important;
+  border-radius: 14px;
+}
+
+.light .project-case-col__label {
+  color: #7c3aed !important;
+}
+
+.light .project-case-col li::before {
+  background: #a78bfa;
+}
+
+.light .project-case-stack span {
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 6px;
+  color: #7c3aed !important;
+}
+
+.light .project-case-card__actions a,
+.light .project-demo-button {
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 10px;
+  color: #1e1b4b !important;
+}
+
+.light .project-case-card__actions a:hover,
+.light .project-demo-button:hover {
+  border-color: rgba(167, 139, 250, 0.42);
+  color: #7c3aed !important;
+}
+
+/* ── Not found panel ────────────────────────────────────────────────────── */
+.light .not-found-panel {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(167, 139, 250, 0.22) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 110px rgba(99, 102, 241, 0.18) !important;
+  backdrop-filter: blur(24px);
+}
+
+.light .not-found-panel::before {
+  background: linear-gradient(115deg, transparent, rgba(167, 139, 250, 0.12), transparent);
+}
+
+.light .not-found-code { color: #7c3aed; }
+.light .not-found-orbit {
+  border-color: rgba(167, 139, 250, 0.18) !important;
+}
+
+.light .not-found-orbit span:nth-child(1) {
+  background: #a78bfa !important;
+}
+.light .not-found-orbit span:nth-child(2) {
+  background: #7dd3fc !important;
+}
+.light .not-found-orbit span:nth-child(3) {
+  background: #34d399 !important;
+}
+
+/* ── Demo modal ─────────────────────────────────────────────────────────── */
+.light .project-demo-modal__panel {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(167, 139, 250, 0.18) !important;
+  border-radius: 20px;
+  box-shadow: 0 28px 90px rgba(99, 102, 241, 0.22) !important;
+}
+
+.light .project-demo-modal__header p { color: #7c3aed !important; }
+
+.light .project-demo-modal__actions a {
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 10px;
+  color: #1e1b4b !important;
+}
+
+.light .project-demo-modal__actions a:hover {
+  border-color: rgba(167, 139, 250, 0.40);
+  color: #7c3aed !important;
+}
+
+/* ── Video modal ────────────────────────────────────────────────────────── */
+.light .video-modal__panel {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 20px;
+}
+
+.light .video-modal__header p { color: #7c3aed; }
+
+/* ── Exp stack chips ────────────────────────────────────────────────────── */
+.light .exp-stack__chip {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  border-radius: 999px;
+  color: #475569;
+}
+
+.light .exp-stack__chip:hover {
+  border-color: rgba(167, 139, 250, 0.32);
+  color: #7c3aed;
+}
+
+/* ── Showcase frame corner brackets → lavender ──────────────────────────── */
+.light .product-showcase__frame::after,
+.light .telegram-showcase::after {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+}
+
+/* ── Hermes showcase frame ──────────────────────────────────────────────── */
+.light .hermes-frame {
+  border-color: rgba(139, 92, 246, 0.28) !important;
+  box-shadow: 0 28px 90px rgba(109, 40, 217, 0.15) !important;
+}
+
+.light .hermes-frame .product-showcase__hud span {
+  color: #7c3aed !important;
+  border-color: rgba(139, 92, 246, 0.28) !important;
+}
+
+/* ── Showcase beams → lavender ──────────────────────────────────────────── */
+.light .showcase-beams span {
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.16), transparent);
+}
+
+/* ── Orbit dot → lavender ───────────────────────────────────────────────── */
+.light .showcase-orbit {
+  border-color: rgba(167, 139, 250, 0.15);
+}
+
+.light .showcase-orbit span {
+  background: #c4b5fd;
+  box-shadow: 0 0 22px rgba(196, 181, 253, 0.75);
+}
+
+.light .showcase-orbit span:nth-child(2) {
+  background: #86efac;
+}
+
+/* ── Scan line on hero kicker → lavender ───────────────────────────────── */
+.light .hero-kicker::after {
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.35), transparent);
+}
+
+/* ── Mobile trade widget ────────────────────────────────────────────────── */
+.light .mobile-trade-widget {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.14), rgba(125, 211, 252, 0.10)) !important;
+  border: 1px solid rgba(167, 139, 250, 0.22) !important;
+  border-radius: 20px;
+}
+
+/* ── Flow headers / outputs ─────────────────────────────────────────────── */
+.light .flow-header {
+  border-radius: 14px 14px 0 0;
+}
+
+/* ── Site-level container — ensure above body::before ───────────────────── */
+.light .site-container,
+.light main {
+  position: relative;
+  z-index: 1;
 }
