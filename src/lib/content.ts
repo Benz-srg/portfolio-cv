@@ -70,6 +70,8 @@ export const siteContent = {
           proof: "Live app, production build, theme-specific product captures, and Telegram research output.",
           stack: ["Next.js", "TypeScript", "Supabase", "Binance WS", "Telegram", "OpenClaw"],
           href: "https://frontend-sigma-murex-aakt3b4x1w.vercel.app/",
+          githubHref: "https://github.com/Benz-srg/paper-trade",
+          demoHref: "/interview-demo.html#paper-trade",
           linkLabel: "Live app",
         },
         {
@@ -90,6 +92,8 @@ export const siteContent = {
           proof: "Live Telegram channel screenshots, ticket/project/report flows, and local workflow demo.",
           stack: ["Telegram", "Paperclip AI", "Codex", "TDD", "QA"],
           href: "#hermes",
+          githubHref: "https://github.com/Benz-srg",
+          demoHref: "/interview-demo.html#hermes",
           linkLabel: "View flow",
         },
         {
@@ -110,6 +114,8 @@ export const siteContent = {
           proof: "GitHub repo, deterministic TypeScript engine, API-backed UX, and multilingual dashboard.",
           stack: ["Next.js", "TypeScript", "API Routes", "Recharts", "i18n"],
           href: "https://github.com/Benz-srg/saju-me",
+          githubHref: "https://github.com/Benz-srg/saju-me",
+          demoHref: "/interview-demo.html#saju-me",
           linkLabel: "GitHub",
         },
       ],
@@ -390,6 +396,8 @@ export const siteContent = {
           proof: "Live app, production build, product captures แยก theme และ Telegram research output",
           stack: ["Next.js", "TypeScript", "Supabase", "Binance WS", "Telegram", "OpenClaw"],
           href: "https://frontend-sigma-murex-aakt3b4x1w.vercel.app/",
+          githubHref: "https://github.com/Benz-srg/paper-trade",
+          demoHref: "/interview-demo.html#paper-trade",
           linkLabel: "ดูเว็บสด",
         },
         {
@@ -410,6 +418,8 @@ export const siteContent = {
           proof: "Telegram channel screenshots, ticket/project/report flows และ local workflow demo",
           stack: ["Telegram", "Paperclip AI", "Codex", "TDD", "QA"],
           href: "#hermes",
+          githubHref: "https://github.com/Benz-srg",
+          demoHref: "/interview-demo.html#hermes",
           linkLabel: "ดู flow",
         },
         {
@@ -430,6 +440,8 @@ export const siteContent = {
           proof: "GitHub repo, deterministic TypeScript engine, API-backed UX และ multilingual dashboard",
           stack: ["Next.js", "TypeScript", "API Routes", "Recharts", "i18n"],
           href: "https://github.com/Benz-srg/saju-me",
+          githubHref: "https://github.com/Benz-srg/saju-me",
+          demoHref: "/interview-demo.html#saju-me",
           linkLabel: "GitHub",
         },
       ],

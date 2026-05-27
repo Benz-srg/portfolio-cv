@@ -3803,7 +3803,8 @@ body {
 }
 
 .project-case-card__footer span,
-.project-case-card__footer a {
+.project-case-card__actions,
+.project-case-card__actions a {
   align-items: center;
   display: inline-flex;
   gap: 8px;
@@ -3815,7 +3816,7 @@ body {
   font-weight: 700;
 }
 
-.project-case-card__footer a {
+.project-case-card__actions a {
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #e2e8f0;
   font-size: 13px;
@@ -3824,7 +3825,7 @@ body {
   transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.project-case-card__footer a:hover {
+.project-case-card__actions a:hover {
   border-color: rgba(34, 211, 238, 0.4);
   color: #a5f3fc;
   transform: translateY(-1px);
@@ -3874,7 +3875,7 @@ body {
   border-color: rgba(15, 23, 42, 0.1);
 }
 
-.light .project-case-card__footer a {
+.light .project-case-card__actions a {
   border-color: rgba(15, 23, 42, 0.12);
   color: #0f172a;
 }
@@ -3899,7 +3900,12 @@ body {
     flex-direction: column;
   }
 
-  .project-case-card__footer a {
+  .project-case-card__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .project-case-card__actions a {
     justify-content: center;
   }
 }

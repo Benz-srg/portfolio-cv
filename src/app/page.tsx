@@ -361,9 +361,14 @@ export default function Home() {
                     <CheckCircle2 size={15} />
                     AI-assisted build verified
                   </span>
-                  <a href={project.href} target={project.href.startsWith("#") ? undefined : "_blank"} rel={project.href.startsWith("#") ? undefined : "noreferrer"}>
-                    {project.linkLabel} <ArrowUpRight size={15} />
-                  </a>
+                  <div className="project-case-card__actions">
+                    <a href={project.githubHref} target="_blank" rel="noreferrer">
+                      <GitHubDark className="size-4" /> GitHub
+                    </a>
+                    <a href={project.demoHref} target="_blank" rel="noreferrer">
+                      Demo <ArrowUpRight size={15} />
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
