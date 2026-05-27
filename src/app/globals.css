@@ -3804,7 +3804,8 @@ body {
 
 .project-case-card__footer span,
 .project-case-card__actions,
-.project-case-card__actions a {
+.project-case-card__actions a,
+.project-demo-button {
   align-items: center;
   display: inline-flex;
   gap: 8px;
@@ -3816,16 +3817,20 @@ body {
   font-weight: 700;
 }
 
-.project-case-card__actions a {
+.project-case-card__actions a,
+.project-demo-button {
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #e2e8f0;
+  cursor: pointer;
   font-size: 13px;
   font-weight: 800;
   padding: 9px 12px;
   transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.project-case-card__actions a:hover {
+.project-case-card__actions a:hover,
+.project-demo-button:hover {
   border-color: rgba(34, 211, 238, 0.4);
   color: #a5f3fc;
   transform: translateY(-1px);
@@ -3875,9 +3880,150 @@ body {
   border-color: rgba(15, 23, 42, 0.1);
 }
 
-.light .project-case-card__actions a {
+.light .project-case-card__actions a,
+.light .project-demo-button {
   border-color: rgba(15, 23, 42, 0.12);
   color: #0f172a;
+}
+
+.project-demo-modal {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 18px;
+  position: fixed;
+  z-index: 90;
+}
+
+.project-demo-modal__backdrop {
+  animation: backdrop-fade 180ms ease both;
+  background: rgba(2, 6, 23, 0.78);
+  border: 0;
+  cursor: zoom-out;
+  inset: 0;
+  position: absolute;
+}
+
+.project-demo-modal__panel {
+  animation: modal-pop 260ms ease both;
+  background: #05070b;
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+  max-height: min(90vh, 920px);
+  max-width: min(94vw, 1180px);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.project-demo-modal__header {
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.project-demo-modal__header p {
+  color: #67e8f9;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin: 0 0 5px;
+  text-transform: uppercase;
+}
+
+.project-demo-modal__header h2 {
+  color: #ffffff;
+  font-size: clamp(18px, 3vw, 28px);
+  line-height: 1.12;
+  margin: 0;
+}
+
+.project-demo-modal__header span {
+  color: #94a3b8;
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 7px;
+  max-width: 760px;
+}
+
+.project-demo-modal__close {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #e2e8f0;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.project-demo-modal__video {
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  display: block;
+  max-height: calc(90vh - 172px);
+  object-fit: contain;
+  width: 100%;
+}
+
+.project-demo-modal__actions {
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 12px 16px;
+}
+
+.project-demo-modal__actions a {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 8px;
+  padding: 9px 12px;
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.project-demo-modal__actions a:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  color: #a5f3fc;
+  transform: translateY(-1px);
+}
+
+.light .project-demo-modal__panel {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 28px 90px rgba(15, 23, 42, 0.22);
+}
+
+.light .project-demo-modal__header,
+.light .project-demo-modal__actions {
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.light .project-demo-modal__header h2,
+.light .project-demo-modal__actions a {
+  color: #0f172a;
+}
+
+.light .project-demo-modal__header span {
+  color: #475569;
+}
+
+.light .project-demo-modal__actions a {
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 @media (max-width: 1024px) {
@@ -3905,7 +4051,25 @@ body {
     flex-direction: column;
   }
 
-  .project-case-card__actions a {
+  .project-case-card__actions a,
+  .project-demo-button {
+    justify-content: center;
+  }
+
+  .project-demo-modal {
+    padding: 10px;
+  }
+
+  .project-demo-modal__header {
+    padding: 14px;
+  }
+
+  .project-demo-modal__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .project-demo-modal__actions a {
     justify-content: center;
   }
 }

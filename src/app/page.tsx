@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import {
   Activity,
   ArrowUpRight,
@@ -20,6 +22,8 @@ import {
   Sparkles,
   Terminal,
   Workflow,
+  Play,
+  X,
 } from "lucide-react";
 import {
   Binance,
@@ -57,6 +61,9 @@ import { siteContent } from "@/lib/content";
 const paperTradeIcons = [CandlestickChart, Bot, DatabaseZap] as const;
 const hermesIcons = [BrainCircuit, Bot, RadioTower] as const;
 const sajuMeIcons = [TypeScript, Nextjs, Chartjs] as const;
+const emptySubscribe = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
 
 const stack = [
   { name: "React", icon: ReactDark },
@@ -84,6 +91,25 @@ const stack = [
 export default function Home() {
   const { locale } = useLocale();
   const c = siteContent[locale];
+  const [activeDemo, setActiveDemo] = useState<(typeof c.projectCases.items)[number] | null>(null);
+  const mounted = useSyncExternalStore(emptySubscribe, clientSnapshot, serverSnapshot);
+  const demoTitleId = useId();
+
+  useEffect(() => {
+    if (!activeDemo) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveDemo(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeDemo]);
 
   return (
     <main className="min-h-screen overflow-hidden bg-[var(--site-bg)] text-[var(--site-fg)] transition-colors duration-500">
@@ -365,9 +391,13 @@ export default function Home() {
                     <a href={project.githubHref} target="_blank" rel="noreferrer">
                       <GitHubDark className="size-4" /> GitHub
                     </a>
-                    <a href={project.demoHref} target="_blank" rel="noreferrer">
-                      Demo <ArrowUpRight size={15} />
-                    </a>
+                    <button
+                      className="project-demo-button"
+                      type="button"
+                      onClick={() => setActiveDemo(project)}
+                    >
+                      <Play size={14} fill="currentColor" /> Demo
+                    </button>
                   </div>
                 </div>
               </article>
@@ -767,6 +797,60 @@ export default function Home() {
           </div>
         </section>
       </div>
+      {activeDemo && mounted
+        ? createPortal(
+            <div
+              aria-labelledby={demoTitleId}
+              aria-modal="true"
+              className="project-demo-modal"
+              role="dialog"
+            >
+              <button
+                aria-label="Close demo preview"
+                className="project-demo-modal__backdrop"
+                type="button"
+                onClick={() => setActiveDemo(null)}
+              />
+              <div className="project-demo-modal__panel">
+                <div className="project-demo-modal__header">
+                  <div>
+                    <p>{activeDemo.tag}</p>
+                    <h2 id={demoTitleId}>{activeDemo.title}</h2>
+                    <span>{activeDemo.proof}</span>
+                  </div>
+                  <button
+                    aria-label="Close demo preview"
+                    className="project-demo-modal__close"
+                    type="button"
+                    onClick={() => setActiveDemo(null)}
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+                <video
+                  className="project-demo-modal__video"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  src="/interview-demo.mp4"
+                />
+                <div className="project-demo-modal__actions">
+                  <a href={activeDemo.githubHref} target="_blank" rel="noreferrer">
+                    <GitHubDark className="size-4" /> GitHub
+                  </a>
+                  <a
+                    href={activeDemo.href}
+                    target={activeDemo.href.startsWith("#") ? undefined : "_blank"}
+                    rel={activeDemo.href.startsWith("#") ? undefined : "noreferrer"}
+                  >
+                    Live / Section <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </main>
   );
 }
