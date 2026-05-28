@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     "AI Tooling",
     "Paper Trade",
     "Hermes AI",
+    "rust-plugin-builder",
+    "Rust Plugin Runtime",
+    "WASM Plugin Platform",
   ],
   icons: {
     icon: [

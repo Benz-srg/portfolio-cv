@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#05070d"/>
+  <rect x="54" y="48" width="1092" height="534" rx="34" fill="#0b1020" stroke="#23304e" stroke-width="2"/>
+  <circle cx="992" cy="130" r="132" fill="#38bdf8" fill-opacity="0.12"/>
+  <circle cx="202" cy="493" r="164" fill="#f97316" fill-opacity="0.11"/>
+  <path d="M88 170H1112" stroke="#1f2a44"/>
+  <circle cx="116" cy="110" r="10" fill="#ef4444"/>
+  <circle cx="148" cy="110" r="10" fill="#f59e0b"/>
+  <circle cx="180" cy="110" r="10" fill="#22c55e"/>
+  <text x="88" y="122" fill="#94a3b8" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="22" transform="translate(132 0)">rust-plugin-builder</text>
+
+  <text x="94" y="236" fill="#f8fafc" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="66" font-weight="800">Rust Plugin OS</text>
+  <text x="98" y="286" fill="#93c5fd" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="24">WASM runtime · workflow engine · event bus</text>
+  <text x="98" y="344" fill="#cbd5e1" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28">A fully Rust-native plugin runtime and workflow platform</text>
+
+  <g transform="translate(98 402)">
+    <rect width="178" height="54" rx="16" fill="#111827" stroke="#334155"/>
+    <text x="28" y="35" fill="#f8fafc" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">rpb-core</text>
+  </g>
+  <g transform="translate(296 402)">
+    <rect width="208" height="54" rx="16" fill="#111827" stroke="#334155"/>
+    <text x="26" y="35" fill="#f8fafc" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">plugin-sdk</text>
+  </g>
+  <g transform="translate(524 402)">
+    <rect width="178" height="54" rx="16" fill="#111827" stroke="#334155"/>
+    <text x="28" y="35" fill="#f8fafc" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">rpb-wasm</text>
+  </g>
+  <g transform="translate(722 402)">
+    <rect width="206" height="54" rx="16" fill="#111827" stroke="#334155"/>
+    <text x="26" y="35" fill="#f8fafc" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20">event-bus</text>
+  </g>
+
+  <g transform="translate(742 226)">
+    <rect x="0" y="0" width="318" height="246" rx="26" fill="#070b14" stroke="#26344f"/>
+    <path d="M58 72h202M58 122h142M58 172h222" stroke="#38bdf8" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="58" cy="72" r="18" fill="#f97316"/>
+    <circle cx="58" cy="122" r="18" fill="#22c55e"/>
+    <circle cx="58" cy="172" r="18" fill="#a78bfa"/>
+    <path d="M258 72c36 18 36 82 0 100" stroke="#64748b" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hermes AI — Multi-Agent Engineering Pipeline</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    width: 1280px; height: 720px; overflow: hidden;
+    background: #0d0d1a;
+    font-family: 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+    color: #e2e8f0;
+    display: flex; flex-direction: column;
+  }
+
+  /* ── Header ── */
+  .header {
+    height: 52px; min-height: 52px;
+    background: linear-gradient(90deg, #1a1a3e 0%, #0f0f2d 100%);
+    border-bottom: 1px solid rgba(139,92,246,0.3);
+    display: flex; align-items: center; padding: 0 24px; gap: 16px;
+    flex-shrink: 0;
+  }
+  .header-logo {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: white; flex-shrink: 0;
+  }
+  .header-title { font-size: 16px; font-weight: 700; color: #f1f5f9; }
+  .header-sub { font-size: 12px; color: #94a3b8; margin-left: 4px; }
+  .header-badge {
+    margin-left: auto; background: rgba(139,92,246,0.2); border: 1px solid rgba(139,92,246,0.4);
+    color: #a78bfa; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px;
+    letter-spacing: 0.04em;
+  }
+  .header-badge.running { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: #34d399; }
+  .header-badge.done { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #60a5fa; }
+
+  /* ── Main layout ── */
+  .main {
+    flex: 1; display: flex; overflow: hidden;
+  }
+
+  /* ── Left pipeline panel ── */
+  .pipeline {
+    width: 320px; min-width: 320px;
+    background: #111128;
+    border-right: 1px solid rgba(139,92,246,0.2);
+    padding: 18px 16px;
+    display: flex; flex-direction: column; gap: 0;
+    overflow: hidden;
+  }
+  .pipeline-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #475569; margin-bottom: 14px; padding-left: 4px;
+  }
+
+  .agent-row {
+    display: flex; flex-direction: column; align-items: center;
+    position: relative;
+  }
+  .agent-node {
+    width: 100%; border-radius: 10px; padding: 10px 12px;
+    border: 1.5px solid rgba(100,116,139,0.2);
+    background: rgba(255,255,255,0.02);
+    display: flex; align-items: center; gap: 10px;
+    transition: all 0.35s ease;
+    position: relative; z-index: 1;
+    cursor: default;
+  }
+  .agent-node.active {
+    border-color: rgba(139,92,246,0.7);
+    background: rgba(139,92,246,0.12);
+    box-shadow: 0 0 0 3px rgba(139,92,246,0.1), 0 4px 16px rgba(139,92,246,0.2);
+  }
+  .agent-node.done {
+    border-color: rgba(16,185,129,0.5);
+    background: rgba(16,185,129,0.06);
+  }
+  .agent-node.skip {
+    border-color: rgba(245,158,11,0.5);
+    background: rgba(245,158,11,0.07);
+  }
+
+  .agent-icon {
+    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .agent-info { flex: 1; min-width: 0; }
+  .agent-name { font-size: 13px; font-weight: 600; color: #f1f5f9; white-space: nowrap; }
+  .agent-model { font-size: 10px; color: #64748b; margin-top: 1px; }
+
+  .agent-plugins {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-top: 5px;
+  }
+  .plugin-chip {
+    font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 99px;
+    background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); color: #a5b4fc;
+    letter-spacing: 0.03em;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    background: #334155;
+    transition: all 0.3s ease;
+  }
+  .agent-node.active .status-dot {
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167,139,250,0.8);
+    animation: pulse-dot 1.2s ease-in-out infinite;
+  }
+  .agent-node.done .status-dot { background: #34d399; box-shadow: none; animation: none; }
+  .agent-node.skip .status-dot { background: #fbbf24; }
+
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 6px rgba(167,139,250,0.6); }
+    50% { box-shadow: 0 0 14px rgba(167,139,250,1); }
+  }
+
+  .connector {
+    width: 2px; height: 14px; flex-shrink: 0;
+    background: linear-gradient(180deg, rgba(100,116,139,0.3), rgba(100,116,139,0.1));
+    transition: background 0.4s ease;
+    margin: 1px 0;
+  }
+  .connector.lit {
+    background: linear-gradient(180deg, #7c3aed, rgba(124,58,237,0.2));
+  }
+  .connector.skip-path {
+    background: linear-gradient(180deg, #f59e0b, rgba(245,158,11,0.2));
+  }
+
+  /* ── Right activity panel ── */
+  .activity {
+    flex: 1; background: #0a0a1f;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .activity-header {
+    height: 40px; min-height: 40px;
+    border-bottom: 1px solid rgba(100,116,139,0.15);
+    display: flex; align-items: center; padding: 0 20px; gap: 12px;
+    flex-shrink: 0;
+  }
+  .activity-tabs { display: flex; gap: 2px; }
+  .activity-tab {
+    font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 6px;
+    color: #64748b; cursor: default; transition: all 0.2s;
+  }
+  .activity-tab.active { background: rgba(139,92,246,0.2); color: #a78bfa; }
+
+  .activity-body {
+    flex: 1; padding: 16px 20px; overflow: hidden;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+
+  /* message bubbles */
+  .msg { display: flex; gap: 10px; align-items: flex-start; opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.4s; }
+  .msg.visible { opacity: 1; transform: translateY(0); }
+  .msg-avatar {
+    width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+  }
+  .msg-content { flex: 1; }
+  .msg-sender { font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 3px; }
+  .msg-bubble {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(100,116,139,0.15);
+    border-radius: 0 10px 10px 10px; padding: 8px 12px;
+    font-size: 12px; line-height: 1.55; color: #cbd5e1;
+  }
+  .msg-bubble code {
+    background: rgba(139,92,246,0.15); color: #c4b5fd;
+    padding: 1px 5px; border-radius: 4px; font-family: 'SF Mono', monospace; font-size: 11px;
+  }
+  .msg-bubble .tag {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 1px 7px;
+    border-radius: 99px; margin-right: 4px; vertical-align: middle;
+  }
+  .tag-new { background: rgba(59,130,246,0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+  .tag-dod { background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+  .tag-qa { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .tag-pass { background: rgba(16,185,129,0.2); color: #34d399; }
+  .tag-fail { background: rgba(239,68,68,0.2); color: #f87171; }
+  .tag-deploy { background: rgba(124,58,237,0.2); color: #a78bfa; }
+
+  .typing {
+    display: flex; align-items: center; gap: 4px;
+    padding: 8px 12px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(100,116,139,0.15);
+    border-radius: 0 10px 10px 10px;
+    width: fit-content; margin-top: 4px;
+  }
+  .typing span {
+    width: 5px; height: 5px; border-radius: 50%; background: #475569;
+    animation: typing-dot 1.2s ease-in-out infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing-dot { 0%,100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+
+  /* code block */
+  .code-block {
+    background: rgba(0,0,0,0.4); border: 1px solid rgba(100,116,139,0.2);
+    border-radius: 8px; padding: 10px 12px; margin-top: 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8;
+    line-height: 1.6;
+  }
+  .code-block .kw { color: #c4b5fd; }
+  .code-block .fn { color: #7dd3fc; }
+  .code-block .str { color: #86efac; }
+  .code-block .cm { color: #475569; }
+
+  .check-list { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+  .check-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #94a3b8; }
+  .check-item.pass { color: #34d399; }
+  .check-item.fail { color: #f87171; }
+  .check-icon { font-size: 12px; }
+
+  /* ── Bottom bar ── */
+  .footer {
+    height: 38px; min-height: 38px;
+    background: #0d0d1a;
+    border-top: 1px solid rgba(100,116,139,0.15);
+    display: flex; align-items: center; padding: 0 20px; gap: 16px;
+    flex-shrink: 0;
+  }
+  .footer-state { font-size: 10px; color: #475569; }
+  .progress-track {
+    flex: 1; height: 3px; background: rgba(100,116,139,0.15); border-radius: 99px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #7c3aed, #06b6d4);
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    width: 0%;
+  }
+  .footer-ticket { font-size: 10px; color: #475569; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-logo">H</div>
+  <div>
+    <span class="header-title">Hermes AI</span>
+    <span class="header-sub">— Agentic Engineering Pipeline</span>
+  </div>
+  <div class="header-badge" id="badge">IDLE</div>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Left: Pipeline -->
+  <div class="pipeline">
+    <div class="pipeline-title">Agent Pipeline</div>
+
+    <!-- Telegram -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-telegram">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#0088cc,#00aced)">📨</div>
+        <div class="agent-info">
+          <div class="agent-name">Telegram</div>
+          <div class="agent-model">Ticket Source</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+    <div class="connector" id="conn-0"></div>
+
+    <!-- CEO -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-ceo">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">👔</div>
+        <div class="agent-info">
+          <div class="agent-name">CEO Agent</div>
+          <div class="agent-model">claude-opus-4-5</div>
+          <div class="agent-plugins"><span class="plugin-chip">orchestrator</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+    <div class="connector" id="conn-1"></div>
+
+    <!-- PO -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-po">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#0891b2,#0e7490)">📋</div>
+        <div class="agent-info">
+          <div class="agent-name">Product Owner</div>
+          <div class="agent-model">claude-sonnet-4-6</div>
+          <div class="agent-plugins"><span class="plugin-chip">DoD writer</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+    <div class="connector" id="conn-2"></div>
+
+    <!-- QA -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-qa">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">🧪</div>
+        <div class="agent-info">
+          <div class="agent-name">QA Agent</div>
+          <div class="agent-model">claude-sonnet-4-6</div>
+          <div class="agent-plugins"><span class="plugin-chip">test-cases</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+    <div class="connector" id="conn-3"></div>
+
+    <!-- Dev Lead -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-lead">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#dc2626,#9f1239)">🔧</div>
+        <div class="agent-info">
+          <div class="agent-name">Dev Lead</div>
+          <div class="agent-model">claude-sonnet-4-6</div>
+          <div class="agent-plugins"><span class="plugin-chip">code-review</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+    <div class="connector" id="conn-4"></div>
+
+    <!-- Fullstack -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-fullstack">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#059669,#047857)">💻</div>
+        <div class="agent-info">
+          <div class="agent-name">Fullstack Dev</div>
+          <div class="agent-model">claude-sonnet-4-6</div>
+          <div class="agent-plugins">
+            <span class="plugin-chip">frontend-design</span>
+            <span class="plugin-chip">best-practices</span>
+          </div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+    <div class="connector" id="conn-5"></div>
+
+    <!-- DevOps -->
+    <div class="agent-row">
+      <div class="agent-node" id="node-devops">
+        <div class="agent-icon" style="background:linear-gradient(135deg,#1e40af,#1d4ed8)">🚀</div>
+        <div class="agent-info">
+          <div class="agent-name">DevOps Agent</div>
+          <div class="agent-model">claude-haiku-4-5</div>
+          <div class="agent-plugins">
+            <span class="plugin-chip">vercel-mcp</span>
+            <span class="plugin-chip">deploy</span>
+          </div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right: Activity -->
+  <div class="activity">
+    <div class="activity-header">
+      <div class="activity-tabs">
+        <div class="activity-tab active">Activity Feed</div>
+        <div class="activity-tab">Logs</div>
+      </div>
+    </div>
+    <div class="activity-body" id="activity-body">
+      <!-- messages injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-state" id="footer-state">State 0 / 13</div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="footer-ticket" id="footer-ticket">ticket: —</div>
+</div>
+
+<script>
+const TOTAL = 14;
+window.totalStates = TOTAL;
+
+// ── State definitions ──────────────────────────────────────────────────────
+const STATES = [
+  // 0 — idle
+  {
+    badge: ['IDLE', ''],
+    nodes: {},
+    conns: {},
+    msgs: [],
+    progress: 0,
+    ticket: '—',
+    footerLabel: 'Waiting for ticket…',
+  },
+  // 1 — ticket arrives
+  {
+    badge: ['NEW TICKET', ''],
+    nodes: { telegram: 'active' },
+    conns: {},
+    msgs: [
+      {
+        avatar: '📨', sender: 'Telegram → Hermes AI', color: '#0088cc',
+        text: '<span class="tag tag-new">NEW</span> <strong>TICKET-042</strong> — "Implement dark-mode toggle on the dashboard with system preference detection and persist to user profile"',
+      },
+    ],
+    progress: 7,
+    ticket: 'TICKET-042',
+    footerLabel: 'Ticket received',
+  },
+  // 2 — CEO reviews
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'active' },
+    conns: { 'conn-0': 'lit' },
+    msgs: [
+      {
+        avatar: '👔', sender: 'CEO Agent · claude-opus-4-5', color: '#7c3aed',
+        text: 'Reviewing TICKET-042. Complexity: <code>medium</code>. Assigning to full pipeline — PO for scope definition, then QA for test plan, then dev team for implementation.',
+      },
+    ],
+    progress: 14,
+    ticket: 'TICKET-042',
+    footerLabel: 'CEO reviewing ticket',
+  },
+  // 3 — PO writes DoD
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit' },
+    msgs: [
+      {
+        avatar: '📋', sender: 'Product Owner · claude-sonnet-4-6', color: '#0891b2',
+        text: '<span class="tag tag-dod">DoD</span> Writing Definition of Done for TICKET-042…',
+      },
+    ],
+    progress: 21,
+    ticket: 'TICKET-042',
+    footerLabel: 'PO writing Definition of Done',
+  },
+  // 4 — PO done
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit' },
+    msgs: [
+      {
+        avatar: '📋', sender: 'Product Owner · claude-sonnet-4-6', color: '#0891b2',
+        text: `<span class="tag tag-dod">DoD</span> Definition of Done:<br>
+          <div class="check-list">
+            <div class="check-item">• Toggle renders in nav bar, accessible via keyboard</div>
+            <div class="check-item">• Respects <code>prefers-color-scheme</code> on first load</div>
+            <div class="check-item">• Preference persisted in user profile via API <code>PATCH /users/:id</code></div>
+            <div class="check-item">• Animation ≤ 200ms, no layout shift</div>
+            <div class="check-item">• Unit tests ≥ 80% coverage on toggle logic</div>
+          </div>`,
+      },
+    ],
+    progress: 28,
+    ticket: 'TICKET-042',
+    footerLabel: 'DoD complete',
+  },
+  // 5 — QA test cases
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit' },
+    msgs: [
+      {
+        avatar: '🧪', sender: 'QA Agent · claude-sonnet-4-6', color: '#f59e0b',
+        text: `<span class="tag tag-qa">TEST PLAN</span> Expected cases for dark-mode toggle:<br>
+          <div class="check-list">
+            <div class="check-item">TC-1: System dark → page loads dark on first visit</div>
+            <div class="check-item">TC-2: Toggle click switches theme immediately</div>
+            <div class="check-item">TC-3: Preference persists across page reload</div>
+            <div class="check-item">TC-4: API call fires on toggle with correct payload</div>
+            <div class="check-item">TC-5: Keyboard nav (Tab + Enter) triggers toggle</div>
+          </div>`,
+      },
+    ],
+    progress: 35,
+    ticket: 'TICKET-042',
+    footerLabel: 'QA writing test cases',
+  },
+  // 6 — Dev Lead specs
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'done', lead: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit' },
+    msgs: [
+      {
+        avatar: '🔧', sender: 'Dev Lead · claude-sonnet-4-6 · code-review', color: '#dc2626',
+        text: `Technical spec for TICKET-042:<br>
+          <div class="code-block">
+<span class="cm">// ThemeContext + useTheme hook</span><br>
+<span class="kw">const</span> <span class="fn">useTheme</span> = () => useContext(ThemeContext);<br>
+<span class="cm">// Persist: PATCH /users/:id { theme: 'dark'|'light' }</span><br>
+<span class="cm">// CSS vars swap via data-theme attr on &lt;html&gt;</span><br>
+<span class="cm">// animation: transition: color 180ms, background 180ms</span>
+          </div>
+          Assigning to Fullstack. Review gate active.`,
+      },
+    ],
+    progress: 42,
+    ticket: 'TICKET-042',
+    footerLabel: 'Dev Lead creating technical spec',
+  },
+  // 7 — Fullstack implements
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'done', lead: 'active', fullstack: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit' },
+    msgs: [
+      {
+        avatar: '💻', sender: 'Fullstack Dev · claude-sonnet-4-6 · frontend-design', color: '#059669',
+        text: `Implementing dark-mode toggle:<br>
+          <div class="code-block">
+<span class="cm">// src/context/ThemeContext.tsx</span><br>
+<span class="kw">export function</span> <span class="fn">ThemeProvider</span>({ children }) {<br>
+&nbsp;&nbsp;<span class="kw">const</span> [theme, setTheme] = <span class="fn">useState</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;() => localStorage.<span class="fn">getItem</span>(<span class="str">'theme'</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;?? matchMedia(<span class="str">'(prefers-color-scheme: dark)'</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.matches ? <span class="str">'dark'</span> : <span class="str">'light'</span><br>
+&nbsp;&nbsp;);<br>
+&nbsp;&nbsp;...
+          </div>`,
+      },
+    ],
+    progress: 56,
+    ticket: 'TICKET-042',
+    footerLabel: 'Fullstack implementing',
+  },
+  // 8 — Lead review → request changes
+  {
+    badge: ['REVIEW', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'done', lead: 'active', fullstack: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit' },
+    msgs: [
+      {
+        avatar: '🔧', sender: 'Dev Lead · code-review plugin', color: '#dc2626',
+        text: `Code review on PR #042:<br>
+          <div class="check-list">
+            <div class="check-item fail"><span class="check-icon">✗</span> Missing debounce on API call — will fire on every rapid toggle</div>
+            <div class="check-item pass"><span class="check-icon">✓</span> Context structure looks good</div>
+            <div class="check-item pass"><span class="check-icon">✓</span> CSS transition correct</div>
+          </div>
+          → Requesting change: wrap API call with <code>debounce(500ms)</code>`,
+      },
+    ],
+    progress: 63,
+    ticket: 'TICKET-042',
+    footerLabel: 'Dev Lead reviewing — changes requested',
+  },
+  // 9 — Fullstack fixes → approved
+  {
+    badge: ['RUNNING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'done', lead: 'done', fullstack: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit' },
+    msgs: [
+      {
+        avatar: '💻', sender: 'Fullstack Dev', color: '#059669',
+        text: `Fixed: Added <code>debounce(apiPersistTheme, 500)</code>.<br>All checks passing locally. Re-submitting for review.`,
+      },
+      {
+        avatar: '🔧', sender: 'Dev Lead · code-review plugin', color: '#dc2626',
+        text: `<span class="tag tag-pass">APPROVED</span> All review items resolved. Sending to QA for final validation.`,
+      },
+    ],
+    progress: 70,
+    ticket: 'TICKET-042',
+    footerLabel: 'Implementation approved by Dev Lead',
+  },
+  // 10 — QA final review
+  {
+    badge: ['QA CHECK', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'active', lead: 'done', fullstack: 'done' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit' },
+    msgs: [
+      {
+        avatar: '🧪', sender: 'QA Agent · final review', color: '#f59e0b',
+        text: `Running test cases against PR #042:<br>
+          <div class="check-list">
+            <div class="check-item pass"><span class="check-icon">✓</span> TC-1: System dark → first load correct</div>
+            <div class="check-item pass"><span class="check-icon">✓</span> TC-2: Toggle switches theme immediately</div>
+            <div class="check-item pass"><span class="check-icon">✓</span> TC-3: Persists across reload</div>
+            <div class="check-item pass"><span class="check-icon">✓</span> TC-4: API fires with debounce (payload verified)</div>
+            <div class="check-item pass"><span class="check-icon">✓</span> TC-5: Keyboard navigation works</div>
+          </div>`,
+      },
+    ],
+    progress: 78,
+    ticket: 'TICKET-042',
+    footerLabel: 'QA running final test suite',
+  },
+  // 11 — QA pass → Telegram report
+  {
+    badge: ['REPORTING', 'running'],
+    nodes: { telegram: 'active', ceo: 'done', po: 'done', qa: 'done', lead: 'done', fullstack: 'done' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit' },
+    msgs: [
+      {
+        avatar: '🧪', sender: 'QA Agent', color: '#f59e0b',
+        text: '<span class="tag tag-pass">ALL PASS</span> 5/5 test cases passed. Notifying team via Telegram.',
+      },
+      {
+        avatar: '📨', sender: 'Telegram → Team', color: '#0088cc',
+        text: '✅ <strong>TICKET-042</strong> — Dark mode toggle: QA approved. Handing off to DevOps for deploy.',
+      },
+    ],
+    progress: 85,
+    ticket: 'TICKET-042',
+    footerLabel: 'QA passed — notifying team',
+  },
+  // 12 — DevOps deploy
+  {
+    badge: ['DEPLOYING', 'running'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'done', lead: 'done', fullstack: 'done', devops: 'active' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit', 'conn-5': 'lit' },
+    msgs: [
+      {
+        avatar: '🚀', sender: 'DevOps Agent · claude-haiku-4-5 · vercel-mcp', color: '#1e40af',
+        text: `<span class="tag tag-deploy">DEPLOY</span> Triggering Vercel deployment for PR #042…<br>
+          <div class="code-block">
+<span class="fn">vercel</span> deploy --prod --token $VERCEL_TOKEN<br>
+<span class="cm">▸ Building… 23s</span><br>
+<span class="cm">▸ Deploying to production…</span><br>
+<span class="str">✔ Production: https://app.hermesai.dev</span>
+          </div>`,
+      },
+    ],
+    progress: 93,
+    ticket: 'TICKET-042',
+    footerLabel: 'DevOps deploying to production',
+  },
+  // 13 — Done
+  {
+    badge: ['SHIPPED', 'done'],
+    nodes: { telegram: 'done', ceo: 'done', po: 'done', qa: 'done', lead: 'done', fullstack: 'done', devops: 'done' },
+    conns: { 'conn-0': 'lit', 'conn-1': 'lit', 'conn-2': 'lit', 'conn-3': 'lit', 'conn-4': 'lit', 'conn-5': 'lit' },
+    msgs: [
+      {
+        avatar: '🚀', sender: 'DevOps Agent', color: '#1e40af',
+        text: '🟢 Deployment successful. Production live. Sending final Telegram notification.',
+      },
+      {
+        avatar: '📨', sender: 'Telegram → Team', color: '#0088cc',
+        text: '🚀 <strong>TICKET-042</strong> shipped to production in <strong>4m 12s</strong>. Dark mode toggle is live at https://app.hermesai.dev — Full pipeline: Telegram → CEO → PO → QA → Dev Lead ↔ Fullstack → QA → Telegram → DevOps.',
+      },
+    ],
+    progress: 100,
+    ticket: 'TICKET-042 ✓ SHIPPED',
+    footerLabel: 'Pipeline complete',
+  },
+];
+
+// ── Render helpers ─────────────────────────────────────────────────────────
+const NODE_IDS = ['telegram', 'ceo', 'po', 'qa', 'lead', 'fullstack', 'devops'];
+const CONN_IDS = ['conn-0', 'conn-1', 'conn-2', 'conn-3', 'conn-4', 'conn-5'];
+
+function renderState(s) {
+  const state = STATES[s];
+
+  // badge
+  const badge = document.getElementById('badge');
+  badge.textContent = state.badge[0];
+  badge.className = 'header-badge' + (state.badge[1] ? ' ' + state.badge[1] : '');
+
+  // nodes
+  NODE_IDS.forEach(id => {
+    const el = document.getElementById('node-' + id);
+    if (!el) return;
+    el.className = 'agent-node' + (state.nodes[id] ? ' ' + state.nodes[id] : '');
+  });
+
+  // connectors
+  CONN_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.className = 'connector' + (state.conns[id] ? ' ' + state.conns[id] : '');
+  });
+
+  // messages
+  const body = document.getElementById('activity-body');
+  body.innerHTML = '';
+  state.msgs.forEach((m, i) => {
+    const div = document.createElement('div');
+    div.className = 'msg';
+    div.innerHTML = `
+      <div class="msg-avatar" style="background:${m.color}22;border:1.5px solid ${m.color}55">${m.avatar}</div>
+      <div class="msg-content">
+        <div class="msg-sender">${m.sender}</div>
+        <div class="msg-bubble">${m.text}</div>
+      </div>`;
+    body.appendChild(div);
+    // stagger reveal
+    setTimeout(() => div.classList.add('visible'), 60 * i);
+  });
+
+  // progress
+  document.getElementById('progress-fill').style.width = state.progress + '%';
+  document.getElementById('footer-ticket').textContent = 'ticket: ' + state.ticket;
+  document.getElementById('footer-state').textContent = `State ${s} / ${TOTAL - 1}  ·  ${state.footerLabel}`;
+}
+
+// ── Public API ─────────────────────────────────────────────────────────────
+let currentState = 0;
+
+window.goToState = function(n) {
+  currentState = Math.max(0, Math.min(n, TOTAL - 1));
+  renderState(currentState);
+};
+
+// ── Auto-play ──────────────────────────────────────────────────────────────
+const DURATIONS = [1800, 2200, 2000, 1800, 2400, 2800, 2600, 2800, 2600, 2400, 2800, 2200, 2800, 4000];
+
+function autoPlay() {
+  renderState(currentState);
+  if (currentState < TOTAL - 1) {
+    setTimeout(() => {
+      currentState++;
+      autoPlay();
+    }, DURATIONS[currentState] ?? 2000);
+  }
+}
+
+window.addEventListener('load', () => {
+  autoPlay();
+});
+</script>
+</body>
+</html>
