@@ -239,6 +239,7 @@ const PORTFOLIO = {
         "An AI-driven paper trading system: a Next.js frontend streams BTC/USDT views while the td-bot AI service collects news, analyzes indicators, generates TP/SL plans, backtests strategies, and feeds the live dashboard.",
       stack: ["Next.js", "TypeScript", "Supabase", "OpenClaw"],
       image: "/paper-trade-stats-light.png",
+      structureImage: "/nexus-ai-structure.png",
       href: "https://frontend-sigma-murex-aakt3b4x1w.vercel.app/",
       linkLabel: "Live app",
       repoLinks: [
@@ -948,12 +949,81 @@ function VideoDemoModal({
   );
 }
 
+function ImagePreviewModal({
+  title,
+  tag,
+  imageSrc,
+  onClose,
+}: {
+  title: string;
+  tag: string;
+  imageSrc: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className="nb-pipeline-overlay"
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 100000,
+        background: "rgba(10,10,26,0.92)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "24px 32px",
+      }}
+    >
+      <div
+        className="nb-pipeline-dialog"
+        onClick={(e) => e.stopPropagation()}
+        style={{ width: "100%", maxWidth: 1120, display: "flex", flexDirection: "column", gap: 16 }}
+      >
+        <div className="nb-pipeline-topbar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(167,139,250,0.8)" }}>
+              {tag}
+            </span>
+            <span style={{ fontSize: 14, fontWeight: 700, color: "white" }}>
+              {title} · System structure
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "white", borderRadius: 8, padding: "6px 14px", cursor: "pointer", fontSize: 12, fontWeight: 600 }}
+          >
+            ✕ Close
+          </button>
+        </div>
+
+        <div style={{ borderRadius: 12, overflow: "hidden", background: "#05070d", lineHeight: 0, border: "1px solid rgba(167,139,250,0.2)" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imageSrc}
+            alt={`${title} system structure`}
+            style={{ width: "100%", display: "block", maxHeight: "78vh", objectFit: "contain", background: "#05070d" }}
+          />
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 /* ── PWork ───────────────────────────────────────────────────────── */
 function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [structureOpen, setStructureOpen] = useState(false);
   const demoVideo = "hasDemo" in project ? project.hasDemo : undefined;
   const demoHtml = "demoHtml" in project ? project.demoHtml : undefined;
+  const structureImage = "structureImage" in project ? project.structureImage : undefined;
   const hasDemo = Boolean(demoVideo);
+  const hasStructure = Boolean(structureImage);
   const showProjectLink = Boolean(project.href && project.linkLabel);
   const media = (
     <div style={{ aspectRatio: "16/9", background: "linear-gradient(135deg, var(--brand-1), var(--brand-2))", position: "relative", overflow: "hidden" }}>
@@ -991,6 +1061,14 @@ function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
             />
           )
       )}
+      {structureOpen && hasStructure && structureImage && (
+        <ImagePreviewModal
+          title={project.name}
+          tag={project.tag}
+          imageSrc={structureImage}
+          onClose={() => setStructureOpen(false)}
+        />
+      )}
       <CloudCard hoverable strong style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
         {showProjectLink ? (
           <a href={project.href} target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "inherit", display: "contents" }}>
@@ -1020,6 +1098,15 @@ function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
                 {project.linkLabel}
                 {project.linkLabel !== "GitHub" && <Icon name="arrow-up-right" size={13} />}
               </a>
+            )}
+            {hasStructure && (
+              <button
+                onClick={() => setStructureOpen(true)}
+                className="nb-btn nb-btn-soft"
+                style={{ fontSize: 13, padding: "8px 14px", border: "none", cursor: "pointer" }}
+              >
+                <Icon name="layers" size={13} /> Structure
+              </button>
             )}
             {"githubHref" in project && project.githubHref && (
               <a href={project.githubHref as string} target="_blank" rel="noreferrer" className="nb-btn nb-btn-soft" style={{ fontSize: 13, padding: "8px 14px" }}>
