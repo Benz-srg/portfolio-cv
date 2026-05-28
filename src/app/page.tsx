@@ -351,10 +351,11 @@ function CloudPuff({
       height={100 * scale}
       style={{ opacity }}
     >
-      <path
-        d="M35 72c-12 0-22-9-22-21 0-11 9-20 20-21 6-16 22-27 41-27 14 0 27 6 35 16 9-7 21-11 34-11 24 0 44 16 48 37 16 2 28 13 28 27 0 16-14 28-32 28H35Z"
-        fill={fill}
-      />
+      <ellipse cx="60"  cy="60" rx="40" ry="28" fill={fill} />
+      <ellipse cx="110" cy="50" rx="50" ry="34" fill={fill} />
+      <ellipse cx="170" cy="58" rx="42" ry="28" fill={fill} />
+      <ellipse cx="200" cy="68" rx="32" ry="22" fill={fill} />
+      <ellipse cx="90"  cy="74" rx="38" ry="20" fill={fill} />
     </svg>
   );
 }
@@ -362,10 +363,8 @@ function CloudPuff({
 function CloudWisp({ scale = 0.6, opacity = 0.55 }: { scale?: number; opacity?: number }) {
   return (
     <svg className="cloud" viewBox="0 0 240 60" width={240 * scale} height={60 * scale} style={{ opacity }}>
-      <path
-        d="M28 40c14-13 40-18 68-12 17-12 48-14 71-4 25-4 46 2 58 16H28Z"
-        fill="#ffffff"
-      />
+      <ellipse cx="60"  cy="34" rx="50" ry="14" fill="#ffffff" />
+      <ellipse cx="160" cy="30" rx="70" ry="16" fill="#ffffff" />
     </svg>
   );
 }
