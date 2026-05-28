@@ -197,11 +197,15 @@ const PORTFOLIO = {
       name: "Nexus AI Paper Trade",
       tag: "AI-driven paper trading system · BTC/USDT · Next.js dashboard",
       summary:
-        "An AI-driven paper trading system: OpenClaw + MiniMax 2.5 run cron jobs to collect news, analyze indicators, generate trade plans with TP/SL, backtest strategies, and surface everything in a live Next.js dashboard.",
+        "An AI-driven paper trading system: a Next.js frontend streams BTC/USDT views while the td-bot AI service collects news, analyzes indicators, generates TP/SL plans, backtests strategies, and feeds the live dashboard.",
       stack: ["Next.js", "TypeScript", "Supabase", "OpenClaw"],
       image: "/paper-trade-stats-light.png",
       href: "https://frontend-sigma-murex-aakt3b4x1w.vercel.app/",
       linkLabel: "Live app",
+      repoLinks: [
+        { label: "Frontend", href: "https://github.com/Benz-srg/paper-trade" },
+        { label: "AI bot", href: "https://github.com/Benz-srg/td-bot" },
+      ],
     },
     {
       index: "02",
@@ -887,6 +891,11 @@ function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
                 <Icon name="github" size={13} githubDark /> GitHub
               </a>
             )}
+            {"repoLinks" in project && project.repoLinks?.map((repo) => (
+              <a key={repo.href} href={repo.href} target="_blank" rel="noreferrer" className="nb-btn nb-btn-soft" style={{ fontSize: 13, padding: "8px 14px" }}>
+                <Icon name="github" size={13} githubDark /> {repo.label}
+              </a>
+            ))}
           </div>
         </div>
       </CloudCard>
