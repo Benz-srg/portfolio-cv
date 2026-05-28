@@ -921,7 +921,9 @@ function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
             )}
             {showProjectLink && (
               <a href={project.href} target="_blank" rel="noreferrer" className="nb-btn nb-btn-soft" style={{ fontSize: 13, padding: "8px 14px" }}>
-                {project.linkLabel} <Icon name="arrow-up-right" size={13} />
+                {project.linkLabel === "GitHub" && <Icon name="github" size={13} githubDark />}
+                {project.linkLabel}
+                {project.linkLabel !== "GitHub" && <Icon name="arrow-up-right" size={13} />}
               </a>
             )}
             {"githubHref" in project && project.githubHref && (
