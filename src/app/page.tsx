@@ -6,8 +6,8 @@ import {
 } from "react";
 import {
   ArrowUpRight, Briefcase, CircleCheck, Cloud,
-  Layers, Mail, MapPin, Play, Radio,
-  Sparkles, Wrench, Zap,
+  Layers, Mail, MapPin, Paperclip, Play, Radio,
+  ShieldCheck, Sparkles, TestTubeDiagonal, Wrench, Zap,
 } from "lucide-react";
 import { createPortal } from "react-dom";
 import {
@@ -72,6 +72,30 @@ function Icon({
 /* ── Stack logo map ──────────────────────────────────────────────── */
 type SvglComp = React.ComponentType<{ style?: CSSProperties }>;
 
+function StackLucideIcon({
+  icon: LucideIcon,
+  color = "#4f46e5",
+  style,
+}: {
+  icon: React.ComponentType<{
+    color?: string;
+    size?: number;
+    strokeWidth?: number;
+    style?: CSSProperties;
+  }>;
+  color?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <LucideIcon
+      color={color}
+      size={14}
+      strokeWidth={2.4}
+      style={{ flexShrink: 0, ...style }}
+    />
+  );
+}
+
 function TechBadgeIcon({
   label,
   style,
@@ -128,6 +152,18 @@ const SerdeIcon = ({ style }: { style?: CSSProperties }) => (
   <TechBadgeIcon label="SE" style={style} />
 );
 
+const PaperclipAiIcon = ({ style }: { style?: CSSProperties }) => (
+  <StackLucideIcon icon={Paperclip} color="#64748b" style={style} />
+);
+
+const TddIcon = ({ style }: { style?: CSSProperties }) => (
+  <StackLucideIcon icon={TestTubeDiagonal} color="#0ea5e9" style={style} />
+);
+
+const QaIcon = ({ style }: { style?: CSSProperties }) => (
+  <StackLucideIcon icon={ShieldCheck} color="#10b981" style={style} />
+);
+
 const STACK_LOGO: Record<string, SvglComp> = {
   "Next.js":      Nextjs,
   "NestJS":       NestJS,
@@ -140,6 +176,9 @@ const STACK_LOGO: Record<string, SvglComp> = {
   "OpenClaw":     OpenClaw,
   "Codex":        CodexLight,
   "Telegram":     Telegram,
+  "Paperclip AI": PaperclipAiIcon,
+  "TDD":          TddIcon,
+  "QA":           QaIcon,
   "React 19":     ReactLight,
   "React":        ReactLight,
   "Tailwind CSS": TailwindCSS,
