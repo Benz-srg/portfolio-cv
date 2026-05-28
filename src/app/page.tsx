@@ -263,11 +263,13 @@ const PORTFOLIO = {
       name: "rust-plugin-builder",
       tag: "Rust-native plugin runtime · WASM sandbox · workflow platform",
       summary:
-        "A next-generation plugin operating system built in Rust: domain-first workspace crates, plugin SDK contracts, runtime lifecycle, capability permissions, WASM host traits, event bus, workflow trigger hooks, scheduler/API/devtools stubs, and a sample plugin layout.",
+        "A Rust-native runtime for building AI-capable plugins: typed SDK contracts, capability permissions, WASM sandboxing, event-driven workflow hooks, realtime logs, and extension points for agent tools/providers.",
       stack: ["Rust", "Tokio", "Axum", "WASM", "Serde"],
       image: "/rust-plugin-builder-og.svg",
       href: "https://github.com/Benz-srg/rust-plugin-builder",
       linkLabel: "GitHub",
+      hasDemo: "/rust-plugin-builder-demo.mp4",
+      demoHtml: "/rust-plugin-builder-demo.html",
     },
     {
       index: "04",
@@ -865,10 +867,93 @@ function PipelineModal({ onClose }: { onClose: () => void }) {
   );
 }
 
+function VideoDemoModal({
+  title,
+  tag,
+  videoSrc,
+  htmlSrc,
+  onClose,
+}: {
+  title: string;
+  tag: string;
+  videoSrc: string;
+  htmlSrc?: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className="nb-pipeline-overlay"
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 100000,
+        background: "rgba(10,10,26,0.9)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "24px 32px",
+      }}
+    >
+      <div
+        className="nb-pipeline-dialog"
+        onClick={(e) => e.stopPropagation()}
+        style={{ width: "100%", maxWidth: 1040, display: "flex", flexDirection: "column", gap: 16 }}
+      >
+        <div className="nb-pipeline-topbar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(167,139,250,0.8)" }}>
+              {tag}
+            </span>
+            <span style={{ fontSize: 14, fontWeight: 700, color: "white" }}>
+              {title} · Interview demo
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "white", borderRadius: 8, padding: "6px 14px", cursor: "pointer", fontSize: 12, fontWeight: 600 }}
+          >
+            ✕ Close
+          </button>
+        </div>
+
+        <div style={{ borderRadius: 12, overflow: "hidden", background: "#05070d", lineHeight: 0, border: "1px solid rgba(167,139,250,0.2)" }}>
+          <video
+            src={videoSrc}
+            controls
+            autoPlay
+            muted
+            playsInline
+            style={{ width: "100%", display: "block", aspectRatio: "16/9", background: "#05070d" }}
+          />
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+          <p style={{ margin: 0, color: "rgba(226,232,240,0.78)", fontSize: 13, lineHeight: 1.5 }}>
+            Short visual walkthrough for Senior Full Stack Developer interviews with Agentic AI focus.
+          </p>
+          {htmlSrc && (
+            <a href={htmlSrc} target="_blank" rel="noreferrer" className="nb-btn nb-btn-soft" style={{ fontSize: 13, padding: "8px 14px" }}>
+              Open HTML demo <Icon name="arrow-up-right" size={13} />
+            </a>
+          )}
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 /* ── PWork ───────────────────────────────────────────────────────── */
 function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const hasDemo = "hasDemo" in project && !!project.hasDemo;
+  const demoVideo = "hasDemo" in project ? project.hasDemo : undefined;
+  const demoHtml = "demoHtml" in project ? project.demoHtml : undefined;
+  const hasDemo = Boolean(demoVideo);
   const showProjectLink = Boolean(project.href && project.linkLabel);
   const media = (
     <div style={{ aspectRatio: "16/9", background: "linear-gradient(135deg, var(--brand-1), var(--brand-2))", position: "relative", overflow: "hidden" }}>
@@ -893,8 +978,18 @@ function ProjectCard({ project }: { project: typeof PORTFOLIO.work[number] }) {
 
   return (
     <>
-      {modalOpen && hasDemo && (
-        <PipelineModal onClose={() => setModalOpen(false)} />
+      {modalOpen && hasDemo && demoVideo && (
+        project.name === "Hermes AI"
+          ? <PipelineModal onClose={() => setModalOpen(false)} />
+          : (
+            <VideoDemoModal
+              title={project.name}
+              tag={project.tag}
+              videoSrc={demoVideo}
+              htmlSrc={demoHtml}
+              onClose={() => setModalOpen(false)}
+            />
+          )
       )}
       <CloudCard hoverable strong style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
         {showProjectLink ? (
