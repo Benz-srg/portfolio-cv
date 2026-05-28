@@ -114,11 +114,11 @@
   pointer-events: none; overflow: hidden; z-index: 0;
 }
 .nb-cloud-layer svg.cloud {
-  position: absolute; filter: blur(0.5px); opacity: 0.85; will-change: transform;
+  position: absolute; filter: blur(0.3px); opacity: 0.85; will-change: transform;
 }
-.nimbus-night .nb-cloud-layer svg.cloud { opacity: 0.55; }
+.nimbus-night .nb-cloud-layer svg.cloud { opacity: 0.28; }
 .nimbus-night .nb-cloud-layer svg.cloud path,
-.nimbus-night .nb-cloud-layer svg.cloud ellipse { fill: rgba(196,181,253,0.45); }
+.nimbus-night .nb-cloud-layer svg.cloud ellipse { fill: #c4b5fd; }
 
 @keyframes nb-drift-right { from { transform: translateX(-15vw); } to { transform: translateX(115vw); } }
 @keyframes nb-drift-left  { from { transform: translateX(115vw); } to { transform: translateX(-15vw); } }
